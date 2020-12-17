@@ -33,4 +33,9 @@ try feather.configure(database: .sqlite(.file("db.sqlite")),
                         AdminBuilder(),
                         FrontendBuilder(),
                       ])
+
+if feather.app.isDebug {
+    try feather.reset(resourcesOnly: true)
+}
+
 try feather.start()

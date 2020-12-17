@@ -33,23 +33,16 @@ final class FrontendSettingsForm: Form {
 
     init() {}
 
-    // MARK: - private
+    // MARK: - private helpers
     
     private func settingsKey(for key: String) -> String { "frontend.site." + key }
-    
-    private func load(key: String, keyPath: ReferenceWritableKeyPath<FrontendSettingsForm, FormField<String>>, db: Database) -> EventLoopFuture<Void> {
-        #warning("fixme")
-        return db.eventLoop.future()
-//        SystemVariableModel.find(key: settingsKey(for: key), db: db)
-//            .map { [unowned self] in self[keyPath: keyPath].value = $0?.value }
+
+    private func load(key: String, keyPath: ReferenceWritableKeyPath<FrontendSettingsForm, FormField<String>>, req: Request) -> EventLoopFuture<Void> {
+        req.variable(settingsKey(for: key)).map { [unowned self] in self[keyPath: keyPath].value = $0 }
     }
 
-    private func save(key: String, value: String?, db: Database) -> EventLoopFuture<Void> {
-        db.eventLoop.future()
-//        SystemVariableModel.query(on: db)
-//            .filter(\.$key == settingsKey(for: key))
-//            .set(\.$value, to: value?.emptyToNil)
-//            .update()
+    private func save(key: String, value: String?, req: Request) -> EventLoopFuture<Void> {
+        req.setVariable(settingsKey(for: key), value: value)
     }
 
     // MARK: - form api
@@ -65,25 +58,25 @@ final class FrontendSettingsForm: Form {
         filters.options = contentFilters.flatMap { $0 }.map(\.formFieldOption)
 
         return req.eventLoop.flatten([
-//            SystemVariableModel.find(key: settingsKey(for: "logo"), db: req.db)
-//            .map { [unowned self] in image.value.originalKey = $0?.value?.emptyToNil },
-//
-//            SystemVariableModel.find(key: settingsKey(for: "filters"), db: req.db)
-//                .map { [unowned self] in filters.values = $0?.value?.split(separator: ",").map { String($0) } ?? [] },
+            req.variable(settingsKey(for: "logo"))
+                .map { [unowned self] in image.value.originalKey = $0?.emptyToNil },
 
-            load(key: "title", keyPath: \.title, db: req.db),
-            load(key: "excerpt", keyPath: \.excerpt, db: req.db),
-            load(key: "color.primary", keyPath: \.primaryColor, db: req.db),
-            load(key: "color.secondary", keyPath: \.secondaryColor, db: req.db),
-            load(key: "font.family", keyPath: \.fontFamily, db: req.db),
-            load(key: "font.size", keyPath: \.fontSize, db: req.db),
+            req.variable(settingsKey(for: "filters"))
+                .map { [unowned self] in filters.values = $0?.split(separator: ",").map { String($0) } ?? [] },
+
+            load(key: "title", keyPath: \.title, req: req),
+            load(key: "excerpt", keyPath: \.excerpt, req: req),
+            load(key: "color.primary", keyPath: \.primaryColor, req: req),
+            load(key: "color.secondary", keyPath: \.secondaryColor, req: req),
+            load(key: "font.family", keyPath: \.fontFamily, req: req),
+            load(key: "font.size", keyPath: \.fontSize, req: req),
             
-            load(key: "css", keyPath: \.css, db: req.db),
-            load(key: "js", keyPath: \.js, db: req.db),
-            load(key: "footer", keyPath: \.footer, db: req.db),
-            load(key: "footer.bottom", keyPath: \.footerBottom, db: req.db),
-            load(key: "copy", keyPath: \.copy, db: req.db),
-            load(key: "copy.prefix", keyPath: \.copyPrefix, db: req.db),
+            load(key: "css", keyPath: \.css, req: req),
+            load(key: "js", keyPath: \.js, req: req),
+            load(key: "footer", keyPath: \.footer, req: req),
+            load(key: "footer.bottom", keyPath: \.footerBottom, req: req),
+            load(key: "copy", keyPath: \.copy, req: req),
+            load(key: "copy.prefix", keyPath: \.copyPrefix, req: req),
         ])
     }
 
@@ -107,24 +100,24 @@ final class FrontendSettingsForm: Form {
             image.save(to: FrontendModule.path, req: req)
                 .flatMap { [unowned self] key in
                     if let key = key {
-                        return save(key: "logo", value: key, db: req.db)
+                        return save(key: "logo", value: key, req: req)
                     }
                     return req.eventLoop.future()
                 },
             
-            save(key: "filters", value: filters.values.joined(separator: ","), db: req.db),
-            save(key: "title", value: title.value, db: req.db),
-            save(key: "excerpt", value: excerpt.value, db: req.db),
-            save(key: "color.primary", value: primaryColor.value, db: req.db),
-            save(key: "color.secondary", value: secondaryColor.value, db: req.db),
-            save(key: "font.family", value: fontFamily.value, db: req.db),
-            save(key: "font.size", value: fontSize.value, db: req.db),
-            save(key: "css", value: css.value, db: req.db),
-            save(key: "js", value: js.value, db: req.db),
-            save(key: "footer", value: footer.value, db: req.db),
-            save(key: "footer.bottom", value: footerBottom.value, db: req.db),
-            save(key: "copy", value: copy.value, db: req.db),
-            save(key: "copy.prefix", value: copyPrefix.value, db: req.db),
+            save(key: "filters", value: filters.values.joined(separator: ","), req: req),
+            save(key: "title", value: title.value, req: req),
+            save(key: "excerpt", value: excerpt.value, req: req),
+            save(key: "color.primary", value: primaryColor.value, req: req),
+            save(key: "color.secondary", value: secondaryColor.value, req: req),
+            save(key: "font.family", value: fontFamily.value, req: req),
+            save(key: "font.size", value: fontSize.value, req: req),
+            save(key: "css", value: css.value, req: req),
+            save(key: "js", value: js.value, req: req),
+            save(key: "footer", value: footer.value, req: req),
+            save(key: "footer.bottom", value: footerBottom.value, req: req),
+            save(key: "copy", value: copy.value, req: req),
+            save(key: "copy.prefix", value: copyPrefix.value, req: req),
         ])
         .map { [unowned self] in notification = "Settings saved" }
     }
