@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/binarybirds/feather-core",
         "state": {
           "branch": null,
-          "revision": "628c09ec61fd0f8736137a2c15e2e40234a6d594",
-          "version": "1.0.0-beta.30.2"
+          "revision": "903c74d885ddca39c8291264b3c3a0c3fafc7697",
+          "version": "1.0.0-beta.31.7"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-kit.git",
         "state": {
           "branch": null,
-          "revision": "b6cd7b93ef45b767041efeb83571457658c4acf7",
-          "version": "1.10.1"
+          "revision": "86ebecdb98981b7a242746209b4335770bf0bd11",
+          "version": "1.10.2"
         }
       },
       {

@@ -34,7 +34,7 @@ final class FrontendPageEditForm: ModelForm {
     
     func initialize(req: Request) -> EventLoopFuture<Void> {
         if let id = modelId {
-            return Model.findMetadataBy(id: id, req: req) .map { [unowned self] in metadata = $0 }
+            return Model.findMetadata(reference: id, on: req.db) .map { [unowned self] in metadata = $0 }
         }
         return req.eventLoop.future()
     }

@@ -7,27 +7,6 @@
 
 import FeatherCore
 
-/*
-struct AFilter: ContentFilter {
-    var key: String { "a" }
-    var label: String { "A" }
-
-    func filter(_ input: String) -> String {
-        input.replacingOccurrences(of: "a", with: "-")
-    }
-}
-
-struct BFilter: ContentFilter {
-    var key: String { "b" }
-    var label: String { "B" }
-
-    func filter(_ input: String) -> String {
-        input.replacingOccurrences(of: "b", with: "_")
-    }
-}
-*/
-
-
 final class FrontendModule: ViperModule {
 
     static let name = "frontend"
@@ -46,7 +25,7 @@ final class FrontendModule: ViperModule {
     }
 
     func boot(_ app: Application) throws {
-        app.databases.middleware.use(MetadataModelMiddleware<FrontendPageModel>(app: app))
+        app.databases.middleware.use(MetadataModelMiddleware<FrontendPageModel>())
 
         /// install
         app.hooks.register("model-install", use: modelInstallHook)
@@ -64,14 +43,16 @@ final class FrontendModule: ViperModule {
         
         app.hooks.register("frontend-page", use: frontendPageHook)
         app.hooks.register("frontend-home-page", use: frontendHomePageHook)
-        
-        app.hooks.register("content-filters", use: contentFiltersHook)
     }
 
-    func contentFiltersHook(args: HookArguments) -> [ContentFilter] {
-        [] //[AFilter(), BFilter()]
+    func metadataQueryJoinHook<T: ViperModel & MetadataRepresentable>(args: HookArguments) -> QueryBuilder<T> {
+        let qb = args["query-builder"] as! QueryBuilder<T>
+        return qb.join(FrontendMetadataModel.self, on: \FrontendMetadataModel.$reference == \T._$id)
+                    .filter(FrontendMetadataModel.self, \.$module == T.Module.name)
+                    .filter(FrontendMetadataModel.self, \.$model == T.name)
+
     }
-    
+
     func leafDataGenerator(for req: Request) -> [String: LeafDataGenerator]? {
         let menus = req.cache["frontend.menus"] as? [String: LeafDataRepresentable] ?? [:]
         return [
@@ -124,8 +105,7 @@ final class FrontendModule: ViperModule {
     
     func frontendPageHook(args: HookArguments) -> EventLoopFuture<Response?> {
         let req = args["req"] as! Request
-
-        return FrontendPageModel.queryPublicMetadata(path: req.url.path, req: req)
+        return FrontendPageModel.queryJoinPublicMetadata(path: req.url.path, on: req.db)
             .first()
             .flatMap { page -> EventLoopFuture<Response?> in
                 guard let page = page else {
@@ -135,13 +115,13 @@ final class FrontendModule: ViperModule {
                 let content = page.content.trimmingCharacters(in: .whitespacesAndNewlines)
                 if content.hasPrefix("["), content.hasSuffix("-page]") {
                     let name = String(content.dropFirst().dropLast())
-                    let args: HookArguments = ["page-metadata": page.joinedMetadata(req: req) as Any]
+                    let args: HookArguments = ["page-metadata": page.joinedMetadata as Any]
                     if let future: EventLoopFuture<Response?> = req.invoke(name, args: args) {
                         return future
                     }
                 }
                 /// render the page with the filtered content
-                var ctx = page.leafDataWithJoinedMetadata(req: req).dictionary!
+                var ctx = page.leafDataWithJoinedMetadata.dictionary!
                 ctx["content"] = .string(page.filter(content, req: req))
                 return req.leaf.render(template: "Frontend/Page", context: .init(ctx)).encodeOptionalResponse(for: req)
             }

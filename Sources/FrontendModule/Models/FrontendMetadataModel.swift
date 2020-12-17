@@ -71,8 +71,13 @@ final class FrontendMetadataModel: ViperModel {
     /// the list of content filter identifiers that will be applied to the content during rendering
     @Field(key: FieldKeys.filters) var filters: [String]
 
-    init() { }
-    
+    init() {
+        date = Date()
+        status = .draft
+        feedItem = false
+        filters = []
+    }
+
     init(id: UUID? = nil,
          module: String,
          model: String,

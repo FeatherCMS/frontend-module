@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  FrontendMetadataObject.swift
+//  FrontendApi
 //
 //  Created by Tibor Bodecs on 2020. 12. 11..
 //
@@ -16,7 +16,6 @@ public struct FrontendMetadataObject: Codable {
     }
 
     public var id: UUID?
-
     public var module: String
     public var model: String
     public var reference: UUID

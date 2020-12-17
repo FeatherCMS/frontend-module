@@ -9,5 +9,7 @@ import FeatherCore
 
 extension FrontendPageModel: MetadataRepresentable {
 
-    var metadata: Metadata { .init(slug: title.slugify(), title: title) }
+    var metadata: Metadata {
+        .init(slug: title.slugify(), title: title)
+    }
 }

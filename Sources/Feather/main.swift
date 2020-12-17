@@ -15,6 +15,9 @@ import UserModule
 import AdminModule
 import FrontendModule
 
+/// setup metadata delegate object
+Feather.metadataDelegate = FrontendMetadataDelegate()
+
 var env = try Environment.detect()
 try LoggingSystem.bootstrap(from: &env)
 let feather = try Feather(env: env)

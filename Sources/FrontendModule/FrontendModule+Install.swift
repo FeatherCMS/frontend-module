@@ -69,19 +69,11 @@ extension FrontendModule {
         return req.eventLoop.flatten([
             /// save home page and set it as a published root page by altering the metadata
             homePage.create(on: req.db).flatMap {
-                homePage.updateMetadata(req: req) { () -> Metadata in
-                    return Metadata(slug: "", status: .published)
-                }
+                homePage.publishMetadataAsHome(on: req.db)
             },
             /// save pages, then we publish the associated metadatas
             pageModels.create(on: req.db).flatMap { _ in
-                req.eventLoop.flatten(pageModels.map { model in
-                    model.updateMetadata(req: req) { () -> Metadata in
-                        var metadata = model.metadata
-                        metadata.status = .published
-                        return metadata
-                    }
-                })
+                req.eventLoop.flatten(pageModels.map { $0.publishMetadata(on: req.db) })
             },
             /// finally create menu items
             [mainMenu, footerMenu].create(on: req.db).flatMap {
