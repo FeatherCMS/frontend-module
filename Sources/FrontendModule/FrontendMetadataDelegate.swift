@@ -30,6 +30,10 @@ public struct FrontendMetadataDelegate: MetadataDelegate {
         queryBuilder.filter(FrontendMetadataModel.self, \.$status == status)
     }
     
+    public func filterVisible<T: MetadataModel>(queryBuilder: QueryBuilder<T>) -> QueryBuilder<T> {
+        queryBuilder.filter(FrontendMetadataModel.self, \.$status != .archived)
+    }
+    
     public func sortByDate<T: MetadataModel>(queryBuilder: QueryBuilder<T>, direction: DatabaseQuery.Sort.Direction) -> QueryBuilder<T> {
         queryBuilder.sort(FrontendMetadataModel.self, \.$date, direction)
     }

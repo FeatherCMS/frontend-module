@@ -105,7 +105,8 @@ final class FrontendModule: ViperModule {
     
     func frontendPageHook(args: HookArguments) -> EventLoopFuture<Response?> {
         let req = args["req"] as! Request
-        return FrontendPageModel.queryJoinPublicMetadata(path: req.url.path, on: req.db)
+        
+        return FrontendPageModel.queryJoinVisibleMetadata(path: req.url.path, on: req.db)
             .first()
             .flatMap { page -> EventLoopFuture<Response?> in
                 guard let page = page else {
