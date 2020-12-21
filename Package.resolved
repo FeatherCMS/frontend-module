@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "admin-module",
-        "repositoryURL": "https://github.com/feather-modules/admin",
-        "state": {
-          "branch": null,
-          "revision": "11ab6c20e87cabc57a42cfd3300a1a360354e343",
-          "version": "1.0.0-beta.1"
-        }
-      },
-      {
         "package": "async-http-client",
         "repositoryURL": "https://github.com/swift-server/async-http-client.git",
         "state": {
@@ -42,17 +33,17 @@
         "repositoryURL": "https://github.com/binarybirds/content-api",
         "state": {
           "branch": null,
-          "revision": "25fcc8cabef0482eac7b4a14e64cf26396d78460",
-          "version": "1.1.0-beta.1"
+          "revision": "cfdc392c845bfd0f57d5b6589574708f4b99dcd8",
+          "version": "1.1.0-beta.2"
         }
       },
       {
         "package": "feather-core",
-        "repositoryURL": "https://github.com/binarybirds/feather-core",
+        "repositoryURL": "https://github.com/FeatherCMS/feather-core",
         "state": {
           "branch": null,
-          "revision": "0cc86855d4d19222653c46b4afb030d8ec7bbf14",
-          "version": "1.0.0-beta.35"
+          "revision": "d9bea823f3270ea4ce380c77e3357d03207a7029",
+          "version": "1.0.0-beta.36"
         }
       },
       {
@@ -71,15 +62,6 @@
           "branch": null,
           "revision": "86ebecdb98981b7a242746209b4335770bf0bd11",
           "version": "1.10.2"
-        }
-      },
-      {
-        "package": "fluent-sqlite-driver",
-        "repositoryURL": "https://github.com/vapor/fluent-sqlite-driver",
-        "state": {
-          "branch": null,
-          "revision": "6f29f6f182c812075f09c7575c18ac5535c26824",
-          "version": "4.0.1"
         }
       },
       {
@@ -146,15 +128,6 @@
         }
       },
       {
-        "package": "liquid-local-driver",
-        "repositoryURL": "https://github.com/binarybirds/liquid-local-driver",
-        "state": {
-          "branch": null,
-          "revision": "83b74c43f6445e7feed666139ada23b28719b920",
-          "version": "1.2.0-beta.8"
-        }
-      },
-      {
         "package": "routing-kit",
         "repositoryURL": "https://github.com/vapor/routing-kit.git",
         "state": {
@@ -170,24 +143,6 @@
           "branch": null,
           "revision": "ea9928b7f4a801b175a00b982034d9c54ecb6167",
           "version": "3.7.0"
-        }
-      },
-      {
-        "package": "sqlite-kit",
-        "repositoryURL": "https://github.com/vapor/sqlite-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "2ec279b9c845cec254646834b66338551a024561",
-          "version": "4.0.2"
-        }
-      },
-      {
-        "package": "sqlite-nio",
-        "repositoryURL": "https://github.com/vapor/sqlite-nio.git",
-        "state": {
-          "branch": null,
-          "revision": "6481dd0b01112d082dd7eb362782126e81964138",
-          "version": "1.1.0"
         }
       },
       {
@@ -269,24 +224,6 @@
           "branch": null,
           "revision": "5a352330c09a323e59ebd99afdf4ca3964c217bc",
           "version": "1.9.1"
-        }
-      },
-      {
-        "package": "system-module",
-        "repositoryURL": "https://github.com/feather-modules/system",
-        "state": {
-          "branch": null,
-          "revision": "03c3dc7267a0b256f7d008d026b53350e69c05f6",
-          "version": "1.0.0-beta.2"
-        }
-      },
-      {
-        "package": "user-module",
-        "repositoryURL": "https://github.com/feather-modules/user",
-        "state": {
-          "branch": null,
-          "revision": "8141842d74c6915f02b66128f5cc024ade9c779b",
-          "version": "1.0.0-beta.1"
         }
       },
       {
