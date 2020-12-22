@@ -32,7 +32,7 @@
 
         #if(!fields.filters.options.isEmpty()):
         <fieldset>
-            <legend>Content</legend>
+            <legend><a id="content">Content</a></legend>
         
             #(field = ["id": "filters", "data": fields.filters])
             #inline("Admin/Fields/Checkbox")

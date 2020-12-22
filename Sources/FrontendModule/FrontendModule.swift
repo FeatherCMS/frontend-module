@@ -98,7 +98,11 @@ final class FrontendModule: ViperModule {
                     "label": "Settings",
                     "permission": "frontend.settings.update",
                 ],
-                
+                [
+                    "url": "/admin/frontend/metadatas/",
+                    "label": "Metadatas",
+                    "permission": "frontend.metadatas.list",
+                ]
             ])
         ]
     }

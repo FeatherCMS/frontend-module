@@ -15,6 +15,8 @@ import UserModule
 import ApiModule
 import AdminModule
 import BlogModule
+import SwiftyModule
+import MarkdownModule
 
 import FrontendModule
 
@@ -37,6 +39,8 @@ try feather.configure(database: .sqlite(.file("db.sqlite")),
                         AdminBuilder(),
                         ApiBuilder(),
                         BlogBuilder(),
+                        SwiftyBuilder(),
+                        MarkdownBuilder(),
                         FrontendBuilder(),
                       ])
 

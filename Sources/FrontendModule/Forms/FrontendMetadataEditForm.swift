@@ -46,7 +46,6 @@ final class FrontendMetadataModelEditForm: ModelForm {
         let contentFilters: [[ContentFilter]] = req.invokeAll("content-filters")
         filters.options = contentFilters.flatMap { $0 }.map(\.formFieldOption)
         filters.options.append(.init(key: "[disable-all-filters]", label: "Disable all filters"))
-
         return req.eventLoop.future()
     }
 
@@ -61,7 +60,6 @@ final class FrontendMetadataModelEditForm: ModelForm {
         slug.value = input.slug
         statusId.value = input.status.rawValue
         feedItem.value = input.feedItem
-        filters.values = input.filters
         date.value = Application.Config.dateFormatter().string(from: input.date)
         title.value = input.title
         excerpt.value = input.excerpt

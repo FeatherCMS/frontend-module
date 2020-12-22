@@ -30,6 +30,8 @@ if isLocalTestMode {
         .package(url: "https://github.com/FeatherCMS/admin-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/user-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/blog-module", from: "1.0.0-beta"),
+        .package(url: "https://github.com/FeatherCMS/swifty-module", from: "1.0.0-beta"),
+        .package(url: "https://github.com/FeatherCMS/markdown-module", from: "1.0.0-beta"),
     ])
     targets.append(contentsOf: [
         .target(name: "Feather", dependencies: [
@@ -43,6 +45,8 @@ if isLocalTestMode {
             .product(name: "AdminModule", package: "admin-module"),
             .product(name: "UserModule", package: "user-module"),
             .product(name: "BlogModule", package: "blog-module"),
+            .product(name: "SwiftyModule", package: "swifty-module"),
+            .product(name: "MarkdownModule", package: "markdown-module"),
 
             .target(name: "FrontendModule"),
         ]),

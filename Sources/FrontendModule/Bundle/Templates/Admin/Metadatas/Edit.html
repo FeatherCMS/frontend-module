@@ -57,7 +57,7 @@
 #if(!fields.filters.options.isEmpty()):
 <fieldset class="p m:bottom:l br:xs">
     <legend class="p:horizontal:s">Content</legend>
-    #(field = ["id": "filters", "data": fields.filters])
+    #(field = ["id": "filters", "label": "Filters (if nothing is selected, <a href=\"/admin/frontend/settings/#content\">site</a> filters will be used)", "data": fields.filters])
     #inline("Admin/Fields/Checkbox")
 </fieldset>
 #endif
