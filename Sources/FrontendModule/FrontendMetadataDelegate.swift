@@ -54,7 +54,6 @@ public struct FrontendMetadataDelegate: MetadataDelegate {
     
     public func create(_ metadata: Metadata, on db: Database) -> EventLoopFuture<Void> {
         let model = FrontendMetadataModel()
-        
         model.use(metadata)
         return model.create(on: db)
     }

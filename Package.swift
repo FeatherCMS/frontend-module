@@ -3,7 +3,6 @@ import PackageDescription
 
 let isLocalTestMode = false
 
-
 var deps: [Package.Dependency] = [
     .package(url: "https://github.com/FeatherCMS/feather-core", from: "1.0.0-beta"),
 ]
@@ -30,6 +29,7 @@ if isLocalTestMode {
         .package(url: "https://github.com/FeatherCMS/api-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/admin-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/user-module", from: "1.0.0-beta"),
+        .package(url: "https://github.com/FeatherCMS/blog-module", from: "1.0.0-beta"),
     ])
     targets.append(contentsOf: [
         .target(name: "Feather", dependencies: [
@@ -42,6 +42,7 @@ if isLocalTestMode {
             .product(name: "ApiModule", package: "api-module"),
             .product(name: "AdminModule", package: "admin-module"),
             .product(name: "UserModule", package: "user-module"),
+            .product(name: "BlogModule", package: "blog-module"),
 
             .target(name: "FrontendModule"),
         ]),

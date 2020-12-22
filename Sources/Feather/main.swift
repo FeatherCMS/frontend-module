@@ -12,8 +12,12 @@ import LiquidLocalDriver
 
 import SystemModule
 import UserModule
+import ApiModule
 import AdminModule
+import BlogModule
+
 import FrontendModule
+
 
 /// setup metadata delegate object
 Feather.metadataDelegate = FrontendMetadataDelegate()
@@ -31,6 +35,8 @@ try feather.configure(database: .sqlite(.file("db.sqlite")),
                         SystemBuilder(),
                         UserBuilder(),
                         AdminBuilder(),
+                        ApiBuilder(),
+                        BlogBuilder(),
                         FrontendBuilder(),
                       ])
 

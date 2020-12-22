@@ -88,8 +88,14 @@ final class FrontendMetadataModelEditForm: ModelForm {
     }
 
     func willSave(req: Request, model: Model) -> EventLoopFuture<Void> {
-        image.save(to: Model.path, req: req).map { [unowned self] key in
-            if image.value.delete || key != nil {
+        /// only delete original file if key contains frontend model key
+        let delete = image.value.delete
+        image.value.delete = false
+        if delete, let original = image.value.originalKey, original.contains(Model.path) {
+            image.value.delete = true
+        }
+        return image.save(to: Model.path, req: req).map { [unowned self] key in
+            if delete || key != nil {
                 model.imageKey = key
             }
             image.value.delete = false
