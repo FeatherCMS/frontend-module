@@ -6,7 +6,7 @@
 //
 
 import FeatherCore
-import FrontendApi
+import FrontendModuleApi
 
 final class FrontendMetadataModelEditForm: ModelForm {
     typealias Model = FrontendMetadataModel

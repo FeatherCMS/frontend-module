@@ -1,6 +1,6 @@
 //
 //  FrontendMetadataObject.swift
-//  FrontendApi
+//  FrontendModuleApi
 //
 //  Created by Tibor Bodecs on 2020. 12. 11..
 //
