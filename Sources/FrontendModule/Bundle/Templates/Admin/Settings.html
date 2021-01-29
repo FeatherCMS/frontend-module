@@ -7,7 +7,7 @@
 #define(body):
 <div id="site-settings" class="content">
     
-    <form id="site-settings-form" class="m" method="post" action="#($req.url.path)" enctype="multipart/form-data">
+    <form id="site-settings-form" class="margin" method="post" action="#($req.url.path)" enctype="multipart/form-data">
         #var(field = nil)
 
         #(field = ["id": "formId", "value": formId])
@@ -27,6 +27,9 @@
 
             #(field = ["id": "excerpt", "size": "s", "data": fields.excerpt])
             #inline("Admin/Fields/Textarea")
+            
+            #(field = ["id": "noindex", "label": "Disable site indexing by search engines", "required": true, "data": fields.noindex])
+            #inline("Admin/Fields/Selection")
 
         </fieldset>
 

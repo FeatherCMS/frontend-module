@@ -36,6 +36,9 @@ final class FrontendModule: ViperModule {
         app.hooks.register("admin", use: (router as! FrontendRouter).adminRoutesHook)
         app.hooks.register("leaf-admin-menu", use: leafAdminMenuHook)
         
+        /// frontend
+        app.hooks.register("leaf-frontend-css", use: leafFrontendCssHook)
+        
         /// cache
         app.hooks.register("prepare-request-cache", use: prepareRequestCacheHook)
         
@@ -104,6 +107,12 @@ final class FrontendModule: ViperModule {
                     "permission": "frontend.metadatas.list",
                 ]
             ])
+        ]
+    }
+    
+    func leafFrontendCssHook(args: HookArguments) -> LeafDataRepresentable {
+        [
+            "name": "frontend",
         ]
     }
     

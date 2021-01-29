@@ -53,7 +53,7 @@ final class FrontendMetadataModel: ViperModel {
     @Field(key: FieldKeys.status) var status: Metadata.Status
     /// seo title of the page, also used for metatags
     @Field(key: FieldKeys.title) var title: String?
-    /// seo / meta description of the content
+    /// seo / meta excerpt of the content
     @Field(key: FieldKeys.excerpt) var excerpt: String?
     /// preview image for the content
     @Field(key: FieldKeys.imageKey) var imageKey: String?

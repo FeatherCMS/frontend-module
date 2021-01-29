@@ -11,6 +11,7 @@ final class FrontendSettingsForm: Form {
 
     var title = FormField<String>(key: "title").required().length(max: 250)
     var excerpt = FormField<String>(key: "excerpt")
+    var noindex = SelectionFormField<Bool>(key: "noindex")
     var primaryColor = FormField<String>(key: "primaryColor")
     var secondaryColor = FormField<String>(key: "secondaryColor")
     var fontFamily = FormField<String>(key: "fontFamily")
@@ -28,7 +29,7 @@ final class FrontendSettingsForm: Form {
     var notification: String?
 
     var fields: [FormFieldRepresentable] {
-        [title, excerpt, primaryColor, secondaryColor, fontFamily, fontSize, locale, timezone, filters, css, js, footer, footerBottom, copy, copyPrefix, image]
+        [title, excerpt, noindex, primaryColor, secondaryColor, fontFamily, fontSize, locale, timezone, filters, css, js, footer, footerBottom, copy, copyPrefix, image]
     }
 
     init() {}
@@ -54,6 +55,8 @@ final class FrontendSettingsForm: Form {
         timezone.value = Application.Config.timezone.identifier
         timezone.options = FormFieldOption.gmtTimezones
         
+        noindex.options = FormFieldOption.trueFalse()
+        
         let contentFilters: [[ContentFilter]] = req.invokeAll("content-filters")
         filters.options = contentFilters.flatMap { $0 }.map(\.formFieldOption)
 
@@ -63,9 +66,13 @@ final class FrontendSettingsForm: Form {
 
             req.variable(settingsKey(for: "filters"))
                 .map { [unowned self] in filters.values = $0?.split(separator: ",").map { String($0) } ?? [] },
+            
+            req.variable(settingsKey(for: "noindex"))
+                .map { [unowned self] in noindex.value = Bool($0 ?? "false") ?? false },
 
             load(key: "title", keyPath: \.title, req: req),
             load(key: "excerpt", keyPath: \.excerpt, req: req),
+
             load(key: "color.primary", keyPath: \.primaryColor, req: req),
             load(key: "color.secondary", keyPath: \.secondaryColor, req: req),
             load(key: "font.family", keyPath: \.fontFamily, req: req),
@@ -108,6 +115,7 @@ final class FrontendSettingsForm: Form {
             save(key: "filters", value: filters.values.joined(separator: ","), req: req),
             save(key: "title", value: title.value, req: req),
             save(key: "excerpt", value: excerpt.value, req: req),
+            save(key: "noindex", value: String(noindex.value ?? false), req: req),
             save(key: "color.primary", value: primaryColor.value, req: req),
             save(key: "color.secondary", value: secondaryColor.value, req: req),
             save(key: "font.family", value: fontFamily.value, req: req),

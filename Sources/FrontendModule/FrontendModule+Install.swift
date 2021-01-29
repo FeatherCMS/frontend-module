@@ -101,6 +101,11 @@ extension FrontendModule {
     func systemVariablesInstallHook(args: HookArguments) -> [[String: Any]] {
         [
             [
+                "key": "frontend.site.noindex",
+                "name": "Site noindex",
+                "note": "Disable site indexing by search engines",
+            ],
+            [
                 "key": "frontend.site.logo",
                 "name": "Site logo",
                 "note": "Logo of the website",
@@ -115,7 +120,7 @@ extension FrontendModule {
                 "key": "frontend.site.excerpt",
                 "name": "Site excerpt",
                 "value": "Feather is an open-source CMS written in Swift using Vapor 4.",
-                "note": "Description of the website",
+                "note": "Excerpt for the website",
             ],
             [
                 "key": "frontend.site.color.primary",
@@ -155,7 +160,7 @@ extension FrontendModule {
             [
                 "key": "frontend.site.footer",
                 "name": "Site footer",
-                "value": "<img class=\"s64\" src=\"/images/icons/icon.png\" alt=\"Logo of Feather\" title=\"Feather\">",
+                "value": "<img class=\"size\" src=\"/images/icons/icon.png\" alt=\"Logo of Feather\" title=\"Feather\">",
                 "note": "Custom contents for the footer",
             ],
             [
@@ -181,10 +186,10 @@ extension FrontendModule {
                 "note": "Title of the home page",
             ],
             [
-                "key": "frontend.home.page.description",
-                "name": "Home page description",
+                "key": "frontend.home.page.excerpt",
+                "name": "Home page excerpt",
                 "value": "This is your brand new Feather CMS powered website",
-                "note": "Description of the home page",
+                "note": "Excerpt for the home page",
             ],
             [
                 "key": "frontend.home.page.icon",
@@ -217,10 +222,10 @@ extension FrontendModule {
                 "note": "Title of the not found page",
             ],
             [
-                "key": "frontend.page.not.found.description",
-                "name": "Page not found description",
+                "key": "frontend.page.not.found.excerpt",
+                "name": "Page not found excerpt",
                 "value": "Unfortunately the requested page is not available.",
-                "note": "Description of the not found page",
+                "note": "Excerpt for the not found page",
             ],
             [
                 "key": "frontend.page.not.found.link",
