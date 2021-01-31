@@ -17,12 +17,9 @@ svg {
     width: 1rem;
 }
 
-input, textarea, select, button, input[type=reset], input[type=submit], fieldset {
-    border-radius: 0.5rem;
-}
 input, textarea, select {
     width: 100%;
 }
-input[type=radio], input[type=checkbox] {
+input[type=radio], input[type=checkbox], input[type=submit], input[type=reset] {
     width: auto;
 }
