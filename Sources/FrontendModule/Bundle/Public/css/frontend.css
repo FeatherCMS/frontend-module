@@ -1,23 +1,11 @@
-body {
-    font-family: ".SF Compact Rounded Medium", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica", "Segoe UI", Roboto, Ubuntu;
-    line-height: 1.5rem;
-}
-a, .link-color { color: #21a9ff; }
-a:hover, a.selected:hover, a:visited:hover, .link-color-1 { color: #fa3ebe; }
-a:visited, .link-color-2 { color: #21a9ff; }
-a.selected, .link-color-3 { color: #105CD5; }
+body { font-family: ".SF Compact Rounded Medium", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica", "Segoe UI", Roboto, Ubuntu; }
+a { color: #21a9ff;  }
+a:hover, a.selected:hover, a:visited:hover { color: #fa3ebe; }
+a:visited { color: #21a9ff; }
+a.selected { color: #105CD5; }
+input[type=radio]:checked:after, input[type=checkbox]:checked:after, input[type=reset], input[type=submit], a.button, button { color: #ffffff; background-color: #21a9ff;}
+input[type=reset]:hover, input[type=submit]:hover, a.button:hover, button:hover { color: #ffffff; background-color: #fa3ebe; }
 
-input[type=radio]:checked:after, input[type=checkbox]:checked:after, button, input[type=reset], input[type=submit], a.button {
-    background: #21a9ff;
-}
-button:hover, input[type=reset]:hover, input[type=submit]:hover, a.button:hover {
-    background: #fa3ebe;
-}
-#site-link img {
-    width: 8rem;
-    line-height: 0;
-    vertical-align: bottom;
-}
 svg {
     vertical-align: text-bottom;
 }

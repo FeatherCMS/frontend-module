@@ -15,7 +15,7 @@
 
     #inline("Frontend/Icons")
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/binarybirds/peacock-css@1.0.0-beta.2/peacock.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/binarybirds/peacock-css@1.0.0-beta.3/peacock.min.css">
 
     #for(file in InvokeAllHooks("frontend-css")):
         #if($app.isDebug ?? false):
@@ -61,15 +61,15 @@
     #endif
 </head>
 <body>
-    <header id="header" class="padding-xs">
-        <a href="/" id="site-link">
+    <header class="padding-xs">
+        <a href="/" id="logo">
             <img src="#($system.variables["frontend.site.logo"].resolve() ?? "/images/logo-text.png")" alt="Logo of #($system.variables["frontend.site.title"])" title="#($system.variables["frontend.site.title"])">
         </a>
 
         <input type="checkbox" id="menu-button" class="selection-off" />
         <label for="menu-button" id="menu-icon" class="selection-off"><span></span></label>
 
-        <nav id="nav">
+        <nav class="nav">
             #for(item in $frontend.menus.main.items ?? []):
             #if(UserHasPermission(item.permission) ?? true):
             <li>
@@ -91,9 +91,9 @@
 
             #($system.variables["frontend.site.footer"])
 
-            <p class="text-s">#($system.variables["frontend.site.copy"]) &copy; #($system.variables["frontend.site.copy.prefix"] ?? "") #Date(timeStamp: Timestamp(), fixedFormat: "y")</p>
+            <p class="text-size-s">#($system.variables["frontend.site.copy"]) &copy; #($system.variables["frontend.site.copy.prefix"] ?? "") #Date(timeStamp: Timestamp(), fixedFormat: "y")</p>
 
-            <p class="text-s">
+            <p class="text-size-s">
                 #if($user.isAuthenticated):
                     #if(UserHasPermission("admin.module.access")):
                     <a href="/admin/">Admin</a> &middot;

@@ -8,16 +8,15 @@
 ])
 
 #define(details):
-    <dl class="text-align-center">
-        <dt>Id</dt>
-        <dd class="margin-horizontal-zero margin-bottom">#(model.id)</dd>
+<dl>
+    <dt>Id</dt>
+    <dd>#(model.id)</dd>
 
-        <dt>Title</dt>
-        <dd class="margin-horizontal-zero margin-bottom">#(model.title)</dd>
-        
-        <dt>Content</dt>
-        <dd class="margin-horizontal-zero margin-bottom">#(model.content)</dd>
-
-    </dl>
+    <dt>Title</dt>
+    <dd>#(model.title)</dd>
+    
+    <dt>Content</dt>
+    <dd>#(model.content)</dd>
+</dl>
 #enddefine
 #inline("Admin/Detail")
