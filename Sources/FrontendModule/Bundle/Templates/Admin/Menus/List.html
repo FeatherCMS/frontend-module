@@ -34,7 +34,7 @@ tr {
 #enddefine
 
 #define(th):
-    <th class="td:left m:h:s#if(actions > 0): td:compact:col#(actions)#endif">
+    <th class="margin-horizontal-xs compact-center#if(actions > 0): compact-col#(actions)#endif">
         #let(link = [
              "key": table.field.key,
              "default": true,
@@ -44,15 +44,15 @@ tr {
     </th>
 
     #if(UserHasPermission("frontend.menu.items.list")):
-    <th class="td:center td:compact:hidden">Items</th>
+    <th class="text-align-center compact-hidden">Items</th>
     #endif
 
     #if((table.edit ?? true) && UserHasPermission(table.key + ".update")):
-    <th class="td:center td:compact:hidden">Edit</th>
+    <th class="text-align-center compact-hidden">Edit</th>
     #endif
     
     #if((table.delete ?? true) && UserHasPermission(table.key + ".delete")):
-    <th class="td:center td:compact:hidden">Drop</th>
+    <th class="text-align-center compact-hidden">Delete</th>
     #endif
 
 #enddefine
@@ -60,7 +60,7 @@ tr {
 #define(tr):
     #for(item in list.items):
     <tr>
-        <td class="td:left m:h:s td:compact:margin #if(actions > 0): td:compact:separator td:compact:col#(actions)#endif">
+        <td class="margin-horizontal-xs compact-margin compact-center#if(actions > 0): compact-separator compact-col#(actions)#endif">
             #if((table.view ?? true) && UserHasPermission(table.key + ".get")):
             <a href="#($req.url.path)#(item.id)/">#(item[table.field.key])</a>
             #else:
@@ -69,19 +69,19 @@ tr {
         </td>
 
         #if(UserHasPermission("frontend.menu.items.list")):
-        <td class="td:center">
+        <td class="text-align-center">
             <a href="#($req.url.path)#(item.id)/items/">#svg("link")</a>
         </td>
         #endif
         
         #if((table.edit ?? true) && UserHasPermission(table.key + ".update")):
-        <td class="td:center">
+        <td class="text-align-center">
             <a href="#($req.url.path)#(item.id)/update">#svg("edit-2")</a>
         </td>
         #endif
 
         #if((table.delete ?? true) && UserHasPermission(table.key + ".delete")):
-        <td class="td:center">
+        <td class="text-align-center">
             <a href="#($req.url.path)#(item.id)/delete/">#svg("trash")</a>
         </td>
         #endif
