@@ -60,8 +60,8 @@
     <link rel="canonical" href="#($req.url.path.absoluteUrl())">
     #endif
 </head>
-<body>
-    <header class="padding-xs">
+<body class="background">
+    <header class="padding-xs background shadow-xs">
         <a href="/" id="logo">
             <img src="#($system.variables["frontend.site.logo"].resolve() ?? "/images/logo-text.png")" alt="Logo of #($system.variables["frontend.site.title"])" title="#($system.variables["frontend.site.title"])">
         </a>
@@ -81,13 +81,13 @@
             #endfor
         </nav>
     </header>
-    
-    <main>
+
+    <main class="background-1" style="min-height: 25rem;">
         #body()
     </main>
     
-    <footer class="padding-xl">
-        <section class="text-align-center">
+    <footer class="background border-top-xs border-color-2">
+        <section class="padding-xl text-align-center">
 
             #($system.variables["frontend.site.footer"])
 

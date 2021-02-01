@@ -5,8 +5,13 @@
     "list": [
         "title": "Metadatas",
         "url": "/admin/frontend/metadatas/"
+    ],
+    actions: [
+        ["name": "Preview", "link": model.slug.safePath(), "targetBlank": true],
+        ["name": "Reference", "link": "/admin/" + model.module + "/" + model.model + "/" + model.reference + "/"]
     ]
 ])
+
 #define(details):
 <dl>
     <dt>Id</dt>
@@ -49,14 +54,16 @@
     <dt>JS</dt>
     <dd>#(model.js)</dd>
     
-    <dt>Module</dt>
-    <dd>#(model.module)</dd>
-    
-    <dt>Model</dt>
-    <dd>#(model.model)</dd>
-    
-    <dt>Reference</dt>
-    <dd>#(model.reference)</dd>
+    <div class="display-none">
+        <dt>Module</dt>
+        <dd>#(model.module)</dd>
+        
+        <dt>Model</dt>
+        <dd>#(model.model)</dd>
+        
+        <dt>Reference</dt>
+        <dd>#(model.reference)</dd>
+    </div>
 </dl>
 #enddefine
 #inline("Admin/Detail")
