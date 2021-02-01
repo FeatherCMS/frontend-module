@@ -20,7 +20,7 @@ final class FrontendMetadataModelEditForm: ModelForm {
     var excerpt = FormField<String>(key: "excerpt").length(max: 250)
     var canonicalUrl = FormField<String>(key: "canonicalUrl").length(max: 250)
     var statusId = SelectionFormField<String>(key: "statusId")
-    var feedItem = SelectionFormField<Bool>(key: "feedItem")
+    var feedItem = FormField<Bool>(key: "feedItem")
     var filters = ArraySelectionFormField<String>(key: "filters")
     var date = FormField<String>(key: "date")
     var css = FormField<String>(key: "css")
@@ -41,7 +41,6 @@ final class FrontendMetadataModelEditForm: ModelForm {
         statusId.options = Metadata.Status.allCases.map(\.formFieldOption)
         statusId.value = FrontendMetadataObject.Status.draft.rawValue
         date.value = Application.Config.dateFormatter().string(from: Date())
-        feedItem.options = FormFieldOption.trueFalse()
 
         let contentFilters: [[ContentFilter]] = req.invokeAll("content-filters")
         filters.options = contentFilters.flatMap { $0 }.map(\.formFieldOption)
@@ -75,7 +74,7 @@ final class FrontendMetadataModelEditForm: ModelForm {
         output.reference = reference.value!
         output.slug = slug.value!
         output.status = Metadata.Status(rawValue: statusId.value!)!
-        output.feedItem = feedItem.value!
+        output.feedItem = feedItem.value ?? false
         output.filters = filters.values
         output.date = Application.Config.dateFormatter().date(from: date.value!)!
         output.title = title.value?.emptyToNil

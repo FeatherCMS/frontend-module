@@ -14,8 +14,8 @@
 ])
 
 #if(modelId != nil):
-    #(form.actions.append(["name": "Preview", "link": "#(fields.slug.value.safePath())", "targetBlank": true]))
-    #(form.actions.append(["name": "Reference", "link": "/admin/#(fields.module.value)/#(fields.model.value)/#(fields.reference.value)/update/"]))
+    #(form.actions.append(["name": "Preview", "link": fields.slug.value.safePath(), "targetBlank": true]))
+    #(form.actions.append(["name": "Reference", "link": "/admin/" + fields.module.value + "/" + fields.model.value + "/" + fields.reference.value + "/update/"]))
 #endif
 
 #define(fields):
@@ -47,8 +47,8 @@
     #(field = ["id": "statusId", "label": "Status", "data": fields.statusId])
     #inline("Admin/Fields/Selection")
 
-    #(field = ["id": "feedItem", "label": "Include in RSS?", "data": fields.feedItem])
-    #inline("Admin/Fields/Selection")
+    #(field = ["id": "feedItem", "label": "Feed item", "placeholder": "Include in Atom / RSS feeds", "data": fields.feedItem])
+    #inline("Admin/Fields/Checkmark")
     
     #(field = ["id": "canonicalUrl", "label": "Canonical URL", "required": false, "data": fields.canonicalUrl])
     #inline("Admin/Fields/Text")

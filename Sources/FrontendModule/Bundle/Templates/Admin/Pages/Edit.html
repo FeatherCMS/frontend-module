@@ -12,7 +12,7 @@
 ])
 
 #if(modelId != nil && UserHasPermission("frontend.metadatas.update")):
-    #(form.actions.append(["name": "Metadata", "link": "/admin/frontend/metadatas/#(metadata.id)/update/"]))
+    #(form.actions.append(["name": "Metadata", "link": "/admin/frontend/metadatas/" + metadata.id + "/update/"]))
 #endif
 
 

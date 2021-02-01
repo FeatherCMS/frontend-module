@@ -15,7 +15,7 @@ final class FrontendMenuItemEditForm: ModelForm {
     var label = FormField<String>(key: "label").required().length(max: 250)
     var url = FormField<String>(key: "url").required().length(max: 250)
     var priority = FormField<Int>(key: "priority")
-    var targetBlank = SelectionFormField<Bool>(key: "targetBlank")
+    var targetBlank = FormField<Bool>(key: "targetBlank")
     var permission = FormField<String>(key: "permission").length(max: 250)
     var menuId = FormField<UUID>(key: "menuId")
     var notification: String?
@@ -27,7 +27,6 @@ final class FrontendMenuItemEditForm: ModelForm {
     init() {}
 
     func initialize(req: Request) -> EventLoopFuture<Void> {
-        targetBlank.options = FormFieldOption.trueFalse()
         targetBlank.value = false
         priority.value = 100
         return req.eventLoop.future()

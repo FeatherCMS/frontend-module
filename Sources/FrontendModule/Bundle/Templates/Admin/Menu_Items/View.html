@@ -23,8 +23,8 @@
     <dt>Url</dt>
     <dd>#(model.url)</dd>
 
-    <dt>Open in new window?</dt>
-    <dd>#(model.targetBlank)</dd>
+    <dt>Target</dt>
+    <dd>Open in #(model.targetBlank == "true" ? "new" : "same" ) window / tab</dd>
     
     <dt>Permission</dt>
     <dd>#(model.permission)</dd>

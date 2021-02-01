@@ -27,8 +27,8 @@
     <dt>Status</dt>
     <dd>#(model.status)</dd>
     
-    <dt>Include in RSS?</dt>
-    <dd>#(model.feedItem)</dd>
+    <dt>Feed item</dt>
+    <dd>#(model.feedItem == "true" ? "Include" : "Do not include") in Atom / RSS feeds</dd>
     
     <dt>Canonical URL</dt>
     <dd>#(model.canonicalUrl)</dd>
