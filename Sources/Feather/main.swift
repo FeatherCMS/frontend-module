@@ -27,6 +27,7 @@ defer { feather.stop() }
 feather.useSQLiteDatabase()
 feather.useLocalFileStorage()
 feather.usePublicFileMiddleware()
+feather.setMaxUploadSize("10mb")
 
 try feather.configure([
     /// core
