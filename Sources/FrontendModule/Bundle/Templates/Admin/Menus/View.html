@@ -5,24 +5,15 @@
         "title": "Menus",
         "url": "/admin/frontend/menus/"
     ],
-    "actions": [
-        ["name": "Menu items", "link": "/admin/frontend/menus/" + model.id + "/items/"]
+    "nav": [
+        ["label": "Menu items", "link": "/admin/frontend/menus/" + model.id + "/items/"]
+    ],
+    fields: [
+        ["label": "Id", "value": model.id],
+        ["label": "Key", "value": model.key],
+        ["label": "Name", "value": model.name],
+        ["label": "Notes", "value": model.notes]
     ]
 ])
 
-#define(details):
-<dl>
-    <dt>Id</dt>
-    <dd>#(model.id)</dd>
-
-    <dt>Key</dt>
-    <dd>#(model.key)</dd>
-
-    <dt>Name</dt>
-    <dd>#(model.name)</dd>
-
-    <dt>Notes</dt>
-    <dd>#(model.notes)</dd>
-</dl>
-#enddefine
 #inline("Admin/Detail")

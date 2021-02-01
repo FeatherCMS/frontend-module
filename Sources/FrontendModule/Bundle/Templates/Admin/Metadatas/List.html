@@ -2,65 +2,11 @@
     "title": "Metadatas",
     "key": "frontend.metadatas",
     "create": false,
+    "delete": false,
     "field": [
-        "key": "slug"
+        "key": "slug",
+        "placeholder": "home"
     ]
 ])
 
-#var(columns = "1fr")
-#var(actions = 0)
-#if((table.edit ?? true) && UserHasPermission(table.key + ".update")):
-    #(columns += " 64px")
-    #(actions += 1)
-#endif
-
-#define(css):
-tr {
-    grid-template-columns: 1fr 1fr;
-}
-@media (min-width: 600px) {
-    
-    tr {
-        grid-template-columns: #(columns);
-    }
-}
-#enddefine
-
-#define(th):
-    <th class="margin-horizontal-xs compact-center compact-col2">
-        #let(link = [
-             "key": table.field.key,
-             "default": true,
-             "sort": (table.field.sort ?? "asc")
-        ])
-        #inline("Admin/SortLink")
-    </th>
-
-    #if((table.edit ?? true) && UserHasPermission(table.key + ".update")):
-    <th class="text-align-center compact-hidden">Edit</th>
-    #endif
-#enddefine
-
-#define(tr):
-    #for(item in list.items):
-    <tr class="compact-margin">
-        <td class="margin-horizontal-xs compact-margin compact-center compact-col2 #if(actions > 0): compact-separator#endif">
-            #if((table.view ?? true) && UserHasPermission(table.key + ".get")):
-            <a href="#($req.url.path)#(item.id)/">
-                #if(item[table.field.key].isEmpty()):home#else:#(item[table.field.key])#endif
-            </a>
-            #else:
-            #if(item[table.field.key].isEmpty()):home#else:#(item[table.field.key])#endif
-            #endif
-        </td>
-        
-        #if((table.edit ?? true) && UserHasPermission(table.key + ".update")):
-        <td class="text-align-center#if(actions < 2): compact-col2#endif">
-            <a href="#($req.url.path)#(item.id)/update">#svg("edit-2")</a>
-        </td>
-        #endif
-    </tr>
-    #endfor
-#enddefine
-
-#inline("Admin/BaseTable")
+#inline("Admin/Table")

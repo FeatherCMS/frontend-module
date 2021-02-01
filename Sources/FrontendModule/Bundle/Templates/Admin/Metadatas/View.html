@@ -6,9 +6,9 @@
         "title": "Metadatas",
         "url": "/admin/frontend/metadatas/"
     ],
-    actions: [
-        ["name": "Preview", "link": model.slug.safePath(), "targetBlank": true],
-        ["name": "Reference", "link": "/admin/" + model.module + "/" + model.model + "/" + model.reference + "/"]
+    nav: [
+        ["label": "Preview", "link": model.slug.safePath(), "targetBlank": true],
+        ["label": "Reference", "link": "/admin/" + model.module + "/" + model.model + "/" + model.reference + "/"]
     ]
 ])
 
@@ -18,7 +18,7 @@
     <dd>#(model.id)</dd>
     
     <dt>Image</dt>
-    <dd><a href="#(model.imageKey.resolve())" target="_blank">#(model.imageKey)</a></dd>
+    <dd>#if(model.imageKey != nil):<a href="#(model.imageKey.resolve())" target="_blank">#(model.imageKey)</a>#endif</dd>
     
     <dt>Title</dt>
     <dd>#(model.title)</dd>
