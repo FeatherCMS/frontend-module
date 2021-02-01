@@ -4,12 +4,11 @@
     "list": [
         "title": "Menus",
         "url": "/admin/frontend/menus/"
+    ],
+    "actions": [
+        ["name": "Menu items", "link": "/admin/frontend/menus/" + model.id + "/items/"]
     ]
 ])
-
-#define(toolbarRightBefore):
-    <a href="/admin/frontend/menus/#(model.id)/items/">#svg("link")</a>
-#enddefine
 
 #define(details):
 <dl>

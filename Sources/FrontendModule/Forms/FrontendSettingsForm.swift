@@ -11,7 +11,7 @@ final class FrontendSettingsForm: Form {
 
     var title = FormField<String>(key: "title").required().length(max: 250)
     var excerpt = FormField<String>(key: "excerpt")
-    var noindex = SelectionFormField<Bool>(key: "noindex")
+    var noindex = FormField<Bool>(key: "noindex")
     var primaryColor = FormField<String>(key: "primaryColor")
     var secondaryColor = FormField<String>(key: "secondaryColor")
     var fontFamily = FormField<String>(key: "fontFamily")
@@ -54,9 +54,7 @@ final class FrontendSettingsForm: Form {
 
         timezone.value = Application.Config.timezone.identifier
         timezone.options = FormFieldOption.gmtTimezones
-        
-        noindex.options = FormFieldOption.trueFalse()
-        
+                
         let contentFilters: [[ContentFilter]] = req.invokeAll("content-filters")
         filters.options = contentFilters.flatMap { $0 }.map(\.formFieldOption)
 
@@ -102,7 +100,7 @@ final class FrontendSettingsForm: Form {
     func save(req: Request) -> EventLoopFuture<Void> {
         Application.Config.set("site.locale", value: locale.value!)
         Application.Config.set("site.timezone", value: timezone.value!)
-
+        
         return req.eventLoop.flatten([
             image.save(to: FrontendModule.path, req: req)
                 .flatMap { [unowned self] key in
