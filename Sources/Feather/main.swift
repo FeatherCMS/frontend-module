@@ -49,7 +49,12 @@ if feather.app.isDebug {
 //    try feather.copyTemplatesIfNeeded()
 }
 
-feather.app.http.server.configuration.hostname = Environment.get("SERVER_HOSTNAME") ?? "0.0.0.0"
-feather.app.http.server.configuration.port = Int(Environment.get("SERVER_PORT") ?? "8080") ?? 8080
+if let hostname = Environment.get("SERVER_HOSTNAME") {
+    feather.app.http.server.configuration.hostname = hostname
+}
+
+if let rawPort = Environment.get("SERVER_PORT"), let port = Int(rawPort) {
+    feather.app.http.server.configuration.port = port
+}
 
 try feather.start()
