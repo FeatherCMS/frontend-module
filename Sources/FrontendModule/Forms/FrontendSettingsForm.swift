@@ -12,24 +12,18 @@ final class FrontendSettingsForm: Form {
     var title = FormField<String>(key: "title").required().length(max: 250)
     var excerpt = FormField<String>(key: "excerpt")
     var noindex = FormField<Bool>(key: "noindex")
-    var primaryColor = FormField<String>(key: "primaryColor")
-    var secondaryColor = FormField<String>(key: "secondaryColor")
-    var fontFamily = FormField<String>(key: "fontFamily")
-    var fontSize = FormField<String>(key: "fontSize")
     var locale = SelectionFormField<String>(key: "locale")
     var timezone = SelectionFormField<String>(key: "timezone")
     var filters = ArraySelectionFormField<String>(key: "filters")
     var css = FormField<String>(key: "css")
     var js = FormField<String>(key: "js")
-    var footer = FormField<String>(key: "footer")
+    var footerTop = FormField<String>(key: "footerTop")
     var footerBottom = FormField<String>(key: "footerBottom")
-    var copy = FormField<String>(key: "copy")
-    var copyPrefix = FormField<String>(key: "copyPrefix")
     var image = FileFormField(key: "image")
     var notification: String?
 
     var fields: [FormFieldRepresentable] {
-        [title, excerpt, noindex, primaryColor, secondaryColor, fontFamily, fontSize, locale, timezone, filters, css, js, footer, footerBottom, copy, copyPrefix, image]
+        [title, excerpt, noindex, locale, timezone, filters, css, js, footerTop, footerBottom, image]
     }
 
     init() {}
@@ -70,18 +64,11 @@ final class FrontendSettingsForm: Form {
 
             load(key: "title", keyPath: \.title, req: req),
             load(key: "excerpt", keyPath: \.excerpt, req: req),
-
-            load(key: "color.primary", keyPath: \.primaryColor, req: req),
-            load(key: "color.secondary", keyPath: \.secondaryColor, req: req),
-            load(key: "font.family", keyPath: \.fontFamily, req: req),
-            load(key: "font.size", keyPath: \.fontSize, req: req),
             
             load(key: "css", keyPath: \.css, req: req),
             load(key: "js", keyPath: \.js, req: req),
-            load(key: "footer", keyPath: \.footer, req: req),
+            load(key: "footer.top", keyPath: \.footerTop, req: req),
             load(key: "footer.bottom", keyPath: \.footerBottom, req: req),
-            load(key: "copy", keyPath: \.copy, req: req),
-            load(key: "copy.prefix", keyPath: \.copyPrefix, req: req),
         ])
     }
 
@@ -98,8 +85,9 @@ final class FrontendSettingsForm: Form {
     }
 
     func save(req: Request) -> EventLoopFuture<Void> {
-        Application.Config.set("site.locale", value: locale.value!)
-        Application.Config.set("site.timezone", value: timezone.value!)
+        Application.Config.set("frontend.site.locale", value: locale.value!)
+        Application.Config.set("frontend.site.timezone", value: timezone.value!)
+        //Application.Config.set("frontend.site.filters", value: filters.values.joined(separator: ","))
         
         return req.eventLoop.flatten([
             image.save(to: FrontendModule.path, req: req)
@@ -114,16 +102,11 @@ final class FrontendSettingsForm: Form {
             save(key: "title", value: title.value, req: req),
             save(key: "excerpt", value: excerpt.value, req: req),
             save(key: "noindex", value: String(noindex.value ?? false), req: req),
-            save(key: "color.primary", value: primaryColor.value, req: req),
-            save(key: "color.secondary", value: secondaryColor.value, req: req),
-            save(key: "font.family", value: fontFamily.value, req: req),
-            save(key: "font.size", value: fontSize.value, req: req),
+
             save(key: "css", value: css.value, req: req),
             save(key: "js", value: js.value, req: req),
-            save(key: "footer", value: footer.value, req: req),
+            save(key: "footer.top", value: footerTop.value, req: req),
             save(key: "footer.bottom", value: footerBottom.value, req: req),
-            save(key: "copy", value: copy.value, req: req),
-            save(key: "copy.prefix", value: copyPrefix.value, req: req),
         ])
         .map { [unowned self] in notification = "Settings saved" }
     }

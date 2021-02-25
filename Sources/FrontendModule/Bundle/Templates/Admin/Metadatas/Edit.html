@@ -25,65 +25,65 @@
     <legend>Information</legend>
 
     #(field = ["id": "image", "class": "large", "data": fields.image, "accept": "image/jpeg"])
-    #inline("Admin/Fields/File")
+    #inline("Common/Fields/File")
     
     #(field = ["id": "title", "data": fields.title])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 
     #(field = ["id": "excerpt", "size": "s", "data": fields.excerpt])
-    #inline("Admin/Fields/Textarea")
+    #inline("Common/Fields/Textarea")
     
     
     #(field = ["id": "date", "more": fields.dateFormat, "data": fields.date])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 </fieldset>
 
 <fieldset>
     <legend>SEO</legend>
 
     #(field = ["id": "slug", "data": fields.slug])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 
     #(field = ["id": "statusId", "label": "Status", "data": fields.statusId])
-    #inline("Admin/Fields/Selection")
+    #inline("Common/Fields/Selection")
 
     #(field = ["id": "feedItem", "label": "Feed item", "placeholder": "Include in Atom / RSS feeds", "data": fields.feedItem])
-    #inline("Admin/Fields/Checkmark")
+    #inline("Common/Fields/Checkmark")
     
     #(field = ["id": "canonicalUrl", "label": "Canonical URL", "required": false, "data": fields.canonicalUrl])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 </fieldset>
 
 #if(!fields.filters.options.isEmpty()):
 <fieldset>
     <legend>Content</legend>
     #(field = ["id": "filters", "label": "Filters (if nothing is selected, <a href=\"/admin/frontend/settings/#content\">site</a> filters will be used)", "data": fields.filters])
-    #inline("Admin/Fields/Checkbox")
+    #inline("Common/Fields/Checkbox")
 </fieldset>
 #endif
 
 <fieldset>
-    <legend>Design</legend>
+    <legend>Code injection</legend>
 
     #(field = ["id": "css", "label": "CSS", "size": "s", "data": fields.css])
-    #inline("Admin/Fields/Textarea")
+    #inline("Common/Fields/Textarea")
 
     #(field = ["id": "js", "label": "JavaScript", "size": "s", "data": fields.js])
-    #inline("Admin/Fields/Textarea")
+    #inline("Common/Fields/Textarea")
 </fieldset>
 
 
-<fieldset class="display-none">
+<fieldset class="hidden">
     <legend>Reference</legend>
 
     #(field = ["id": "module", "required": true, "data": fields.module])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
     
     #(field = ["id": "model", "required": true, "data": fields.model])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
     
     #(field = ["id": "reference", "label": "Identifier", "required": true, "data": fields.reference])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 </fieldset>
 
 #enddefine

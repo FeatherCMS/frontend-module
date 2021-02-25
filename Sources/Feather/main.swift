@@ -8,6 +8,7 @@
 import FeatherCore
 
 import SystemModule
+import CommonModule
 import UserModule
 import ApiModule
 import AdminModule
@@ -27,11 +28,11 @@ defer { feather.stop() }
 feather.useSQLiteDatabase()
 feather.useLocalFileStorage()
 feather.usePublicFileMiddleware()
-feather.setMaxUploadSize("10mb")
 
 try feather.configure([
     /// core
     SystemBuilder(),
+    CommonBuilder(),
     UserBuilder(),
     ApiBuilder(),
     AdminBuilder(),
@@ -42,10 +43,13 @@ try feather.configure([
     MarkdownBuilder(),
 ])
 
-
 /// reset resources folder if we're in debug mode
 if feather.app.isDebug {
-    try feather.reset(resourcesOnly: false)
+//    try feather.resetPublicFiles()
+//    try feather.copyTemplatesIfNeeded()
 }
+
+feather.app.http.server.configuration.hostname = Environment.get("SERVER_HOSTNAME") ?? "0.0.0.0"
+feather.app.http.server.configuration.port = Int(Environment.get("SERVER_PORT") ?? "8080") ?? 8080
 
 try feather.start()

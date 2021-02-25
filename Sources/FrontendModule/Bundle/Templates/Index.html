@@ -8,49 +8,26 @@
     <meta name="robots" content="noindex">
     #endif
     
-    <title>#(head.title ?? metadata.title ?? "") - #($system.variables["frontend.site.title"])</title>
     <meta name="description" content="#(head.excerpt ?? metadata.excerpt ?? $system.variables["frontend.site.excerpt"] ?? "")">
 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     #inline("Frontend/Metatags")
+        
+    <title>#(head.title ?? metadata.title ?? "") - #($system.variables["frontend.site.title"] ?? "")</title>
+        
+    <link rel="manifest" href="/manifest.json">
 
     #inline("Frontend/Icons")
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/binarybirds/peacock-css@1.0.0-beta.4/peacock.min.css">
-
-    #for(file in InvokeAllHooks("frontend-css")):
-        #if($app.isDebug ?? false):
-        <link rel="stylesheet" href="/css/#(file.name).css">
-        #else:
-        <link rel="stylesheet" href="/css/#(file.name).min.css">
-        #endif
-    #endfor
-
-    <style type="text/css">
-        #if($system.variables["frontend.site.font.family"] != nil):
-        body {
-            font-family: #($system.variables["frontend.site.font.family"]);
-        }
-        #endif
-        #if($system.variables["frontend.site.font.size"] != nil):
-        body {
-            font-size: #($system.variables["frontend.site.font.size"]);
-        }
-        #endif
-        #if($system.variables["frontend.site.color.primary"] != nil):
-        a:link, a:visited, \#nav li a.selected {
-            color: #($system.variables["frontend.site.color.primary"]);
-        }
-        #endif
-        #if($system.variables["frontend.site.color.secondary"] != nil):
-        a:link:hover, a:visited:hover, \#nav a:link.selected:hover, \#nav li a:link:hover, \#nav li a:visited:hover{
-            color: #($system.variables["frontend.site.color.secondary"]);
-        }
-        #endif
-
-        #evaluate(css ?? "")
-        #($system.variables["frontend.site.css"] ?? "")
-        #(metadata.css ?? "")
-    </style>
+    #if($app.isDebug ?? false):
+        #for(file in $app.css ?? []):
+            <link rel="stylesheet" href="/css/#(file).css">
+        #endfor
+    #else:
+        <link rel="stylesheet" href="/css/style.min.css">
+    #endif
 
     #if(head.canonicalUrl ?? metadata.canonicalUrl ?? false):
     <link rel="canonical" href="#(head.canonicalUrl ?? metadata.canonicalUrl ?? "")">
@@ -59,41 +36,44 @@
     #if(Request(query: "page") != nil || Request(query: "search") != nil):
     <link rel="canonical" href="#($req.url.path.absoluteUrl())">
     #endif
+
+    <style type="text/css">
+        #evaluate(css ?? "")
+        #($system.variables["frontend.site.css"] ?? "")
+        #(metadata.css ?? "")
+    </style>
 </head>
-<body class="background">
-    <header class="padding-xs background border-bottom-xs border-color-2">
-        <a href="/" id="logo">
+<body>
+
+    <header id="menu">
+        <a href="/" id="menu-logo">
             <img src="#($system.variables["frontend.site.logo"].resolve() ?? "/images/logo-text.png")" alt="Logo of #($system.variables["frontend.site.title"])" title="#($system.variables["frontend.site.title"])">
         </a>
 
-        <input type="checkbox" id="menu-button" class="selection-off" />
-        <label for="menu-button" id="menu-icon" class="selection-off"><span></span></label>
+        <input id="menu-button" type="checkbox" class="user-select-none">
+        <label for="menu-button" id="menu-icon" class="user-select-none"><span></span></label>
 
-        <nav class="nav">
+        <nav id="menu-links">
             #for(item in $frontend.menus.main.items ?? []):
-            #if(UserHasPermission(item.permission) ?? true):
-            <li>
+                #if(UserHasPermission(item.permission) ?? true):
                 <a href="#(item.url)" #if($req.url.path == item.url): class="selected"#endif#if(item.targetBlank): target="_blank"#endif>
-                    #if(item.icon != nil):#svg(item.icon)#endif #(item.label)
+                #if(item.icon != nil):#svg(item.icon)#endif #(item.label)
                 </a>
-            </li>
-            #endif
+                #endif
             #endfor
         </nav>
     </header>
-    
-    <main class="background-1" style="min-height: 25rem;">
+
+    <main>
         #body()
     </main>
     
-    <footer class="background border-top-xs border-color-2">
-        <section class="padding-xl text-align-center">
+    <footer>
+        <section>
 
-            #($system.variables["frontend.site.footer"])
+            #(($system.variables["frontend.site.footer.top"] ?? "").replaceYear())
 
-            <p class="text-size-s">#($system.variables["frontend.site.copy"]) &copy; #($system.variables["frontend.site.copy.prefix"] ?? "") #Date(timeStamp: Timestamp(), fixedFormat: "y")</p>
-
-            <p class="text-size-s">
+            <nav>
                 #if($user.isAuthenticated):
                     #if(UserHasPermission("admin.module.access")):
                     <a href="/admin/">Admin</a> &middot;
@@ -111,9 +91,9 @@
                 </a>
                 #endif
                 #endfor
-            </p>
-            
-            #($system.variables["frontend.site.footer.bottom"])
+            </nav>
+
+            #(($system.variables["frontend.site.footer.bottom"] ?? "").replaceYear())
 
         </section>
     </footer>

@@ -18,22 +18,22 @@
     #var(field = nil)
 
     #(field = ["id": "icon", "data": fields.icon])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
     
     #(field = ["id": "label", "required": true, "data": fields.label])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
     
     #(field = ["id": "url", "required": true, "data": fields.url])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 
     #(field = ["id": "priority", "required": true, "data": fields.priority])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
     
     #(field = ["id": "targetBlank", "label": "Target", "placeholder": "Open in new window / tab", "data": fields.targetBlank])
-    #inline("Admin/Fields/Checkmark")
+    #inline("Common/Fields/Checkmark")
     
     #(field = ["id": "permission", "data": fields.permission])
-    #inline("Admin/Fields/Text")
+    #inline("Common/Fields/Text")
 
 #enddefine
 #inline("Admin/Form")

@@ -1,25 +1,119 @@
-body { font-family: ".SF Compact Rounded Medium", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica", "Segoe UI", Roboto, Ubuntu; }
-a { color: #21a9ff;  }
-a:hover, a.selected:hover, a:visited:hover { color: #fa3ebe; }
-a:visited { color: #21a9ff; }
-a.selected { color: #105CD5; }
-input[type=radio]:checked:after, input[type=checkbox]:checked:after, input[type=reset], input[type=submit], a.button, button { color: #ffffff; background-color: #21a9ff;}
-input[type=reset]:hover, input[type=submit]:hover, a.button:hover, button:hover { color: #ffffff; background-color: #fa3ebe; }
-
+/*
 svg {
     vertical-align: text-bottom;
 }
-#pagination svg, #pagination span {
-    padding: 0 0.5rem;
+*/
+
+body {
+/*    font-family: ".SF Compact Rounded Medium", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica", "Segoe UI", Roboto, Ubuntu;*/
 }
-#pagination svg {
-    height: 1rem;
-    width: 1rem;
+/*h1 {
+    background: url(../images/gradient.png);
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+*/
+@media screen and (max-width: 599px) and (display-mode: standalone) {
+    #menu {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 99999;
+    }
+}
+footer {
+    background-color: var(--background-1-color);
+}
+footer section {
+    padding: var(--unit);
+}
+footer img {
+    width: 64px;
+}
+.error, .red {
+    color: var(--color-red);
+}
+.button, .button-1, button, input[type=reset], input[type=submit] {
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.13);
+}
+.button, a.button, button, input[type=reset], input[type=submit] {
+    background-color: var(--link-color);
+    color: var(--white-color);
+}
+.button:hover, button:hover, input[type=reset]:hover, input[type=submit]:hover {
+    text-decoration: none;
+    background-color: var(--link-color-1);
+}
+.button-1, a.button-1 {
+    border: 2px solid var(--link-color);
+    color: var(--link-color);
+}
+.button-1:hover, a.button-1:hover {
+    border: 2px solid var(--link-color-2);
+    color: var(--link-color-2);
 }
 
+
 input, textarea, select {
+    color: var(--text-color);
+    background-color: var(--bg-color-1);
+    border: 2px solid var(--bg-color-2);
     width: 100%;
 }
 input[type=radio], input[type=checkbox], input[type=submit], input[type=reset] {
     width: auto;
+}
+
+
+input:focus, textarea:focus, select:focus {
+    border: 2px solid var(--gray-color);
+}
+input[type=radio]:checked:after, input[type=checkbox]:checked:after, input[type=reset], input[type=submit], a.button, button {
+    color: var(--white-color);
+    background-color: var(--link-color);
+}
+input[type=reset]:hover, input[type=submit]:hover, a.button:hover, button:hover {
+    color: var(--white-color);
+    background-color: var(--link-color-2);
+}
+
+tbody tr {
+    background-color: var(--bg-color-1);
+}
+
+
+.block {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+
+.wrapper {
+    margin: var(--unit-1) 0;
+}
+.wrapper-1 {
+    margin-top: 0;
+    margin-bottom: var(--unit-1);
+}
+.wrapper > *, .wrapper-1 > * {
+    margin-top: var(--unit-4);
+}
+
+.box {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
+    border-radius: 8px;
+    margin-bottom: var(--unit-3);
+}
+@media (prefers-color-scheme: dark) {
+    .button, .button-1 {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    .box {
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 25px -5px, rgba(0, 0, 0, 0.2) 0px 10px 10px -5px;
+    }
 }

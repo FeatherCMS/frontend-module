@@ -15,25 +15,25 @@ Site settings
         #var(field = nil)
 
         #(field = ["id": "formId", "value": formId])
-        #inline("Admin/Fields/Hidden")
+        #inline("Common/Fields/Hidden")
 
         <fieldset>
             <legend>General</legend>
             
             #(field = ["id": "formToken", "value": formToken])
-            #inline("Admin/Fields/Hidden")
+            #inline("Common/Fields/Hidden")
 
             #(field = ["id": "image", "label": "Logo", "class": "small", "data": fields.image, "accept": "image/png"])
-            #inline("Admin/Fields/File")
+            #inline("Common/Fields/File")
 
             #(field = ["id": "title", "required": true, "data": fields.title])
-            #inline("Admin/Fields/Text")
+            #inline("Common/Fields/Text")
 
             #(field = ["id": "excerpt", "size": "s", "data": fields.excerpt])
-            #inline("Admin/Fields/Textarea")
+            #inline("Common/Fields/Textarea")
             
             #(field = ["id": "noindex", "label": "Site index", "placeholder": "Disable site indexing by search engines", "data": fields.noindex])
-            #inline("Admin/Fields/Checkmark")
+            #inline("Common/Fields/Checkmark")
 
         </fieldset>
 
@@ -42,7 +42,7 @@ Site settings
             <legend><a id="content">Content</a></legend>
         
             #(field = ["id": "filters", "data": fields.filters])
-            #inline("Admin/Fields/Checkbox")
+            #inline("Common/Fields/Checkbox")
         
         </fieldset>
         #endif
@@ -51,60 +51,37 @@ Site settings
             <legend>Localization</legend>
             
             #(field = ["id": "locale", "label": "Locale", "required": true, "data": fields.locale])
-            #inline("Admin/Fields/Selection")
+            #inline("Common/Fields/Selection")
             
             #(field = ["id": "timezone", "required": true, "data": fields.timezone])
-            #inline("Admin/Fields/Selection")
+            #inline("Common/Fields/Selection")
         
-        </fieldset>
-
-        <fieldset>
-            <legend>Design</legend>
-
-            #(field = ["id": "primaryColor", "label": "Primary link color", "more": "e.g #cafe00", "data": fields.primaryColor])
-            #inline("Admin/Fields/Text")
-            
-            #(field = ["id": "secondaryColor", "label": "Secondary link color", "more": "e.g #cafe00", "data": fields.secondaryColor])
-            #inline("Admin/Fields/Text")
-            
-            #(field = ["id": "fontFamily", "label": "Font family", "more": "e.g sans-serif", "data": fields.fontFamily])
-            #inline("Admin/Fields/Text")
-            
-            #(field = ["id": "fontSize", "label": "Base font size", "more": "e.g 16px", "data": fields.fontSize])
-            #inline("Admin/Fields/Text")
-
         </fieldset>
 
         <fieldset>
             <legend>Code injection</legend>
             
-            #(field = ["id": "css", "size": "xl", "data": fields.css])
-            #inline("Admin/Fields/Textarea")
+            #(field = ["id": "css", "label": "CSS", "size": "xl", "data": fields.css])
+            #inline("Common/Fields/Textarea")
             
-            #(field = ["id": "js", "size": "xl", "data": fields.js])
-            #inline("Admin/Fields/Textarea")
+            #(field = ["id": "js", "label": "JavaScript", "size": "xl", "data": fields.js])
+            #inline("Common/Fields/Textarea")
         
         </fieldset>
 
         <fieldset>
             <legend>Footer</legend>
-            
-            #(field = ["id": "footer", "label": "Top area", "size": "s", "data": fields.footer])
-            #inline("Admin/Fields/Textarea")
+
+            #(field = ["id": "footerTop", "label": "Top area", "size": "s", "data": fields.footerTop])
+            #inline("Common/Fields/Textarea")
             
             #(field = ["id": "footerBottom", "label": "Bottom area", "size": "s", "data": fields.footerBottom])
-            #inline("Admin/Fields/Textarea")
-            
-            #(field = ["id": "copy", "label": "Copyright", "size": "s", "required": true, "data": fields.copy])
-            #inline("Admin/Fields/Textarea")
-            
-            #(field = ["id": "copyPrefix", "label": "Copyright prefix", "data": fields.copyPrefix])
-            #inline("Admin/Fields/Text")
-        
+            #inline("Common/Fields/Textarea")
+
         </fieldset>
 
         #(field = ["label": "Save"])
-        #inline("Admin/Fields/Button")
+        #inline("Common/Fields/Button")
     </form>
     </section>
 
@@ -113,6 +90,7 @@ Site settings
         <span>#(notification)</span>
     </section>
     #endif
+
 </div>
 #enddefine
 #inline("Admin/Index")

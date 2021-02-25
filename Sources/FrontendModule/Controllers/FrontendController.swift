@@ -10,7 +10,7 @@ import FeatherCore
 struct FrontendController {
     
     func catchAllView(req: Request) throws -> EventLoopFuture<Response> {
-        let futures: [EventLoopFuture<Response?>] = req.invokeAll("frontend-page")
+        let futures: [EventLoopFuture<Response?>] = req.invokeAll("frontend-route")
         return req.eventLoop.findFirstValue(futures).unwrap(or: Abort(.notFound))
     }
 

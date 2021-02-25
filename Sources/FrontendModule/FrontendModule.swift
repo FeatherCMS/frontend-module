@@ -19,33 +19,29 @@ final class FrontendModule: ViperModule {
             FrontendMigration_v1_0_0()
         ]
     }
-    
+
     static var bundleUrl: URL? {
         Bundle.module.resourceURL?.appendingPathComponent("Bundle")
     }
 
     func boot(_ app: Application) throws {
         app.databases.middleware.use(MetadataModelMiddleware<FrontendPageModel>())
-
         /// install
         app.hooks.register("model-install", use: modelInstallHook)
         app.hooks.register("user-permission-install", use: userPermissionInstallHook)
         app.hooks.register("system-variables-install", use: systemVariablesInstallHook)
-        
-        /// admin
-        app.hooks.register("admin", use: (router as! FrontendRouter).adminRoutesHook)
+        /// routes
+        app.hooks.register("routes", use: (router as! FrontendRouter).routesHook)
+        app.hooks.register("admin-routes", use: (router as! FrontendRouter).adminRoutesHook)
+        app.hooks.register("frontend-route", use: frontendRouteHook)
+        /// leaf
         app.hooks.register("leaf-admin-menu", use: leafAdminMenuHook)
-        
-        /// frontend
-        app.hooks.register("leaf-frontend-css", use: leafFrontendCssHook)
-        
         /// cache
         app.hooks.register("prepare-request-cache", use: prepareRequestCacheHook)
-        
-        app.hooks.register("routes", use: (router as! FrontendRouter).routesHook)
-        
-        app.hooks.register("frontend-page", use: frontendPageHook)
+        /// page
         app.hooks.register("frontend-home-page", use: frontendHomePageHook)
+        /// css
+        app.hooks.register("css", use: cssHook)
     }
 
     func metadataQueryJoinHook<T: ViperModel & MetadataRepresentable>(args: HookArguments) -> QueryBuilder<T> {
@@ -57,9 +53,30 @@ final class FrontendModule: ViperModule {
     }
 
     func leafDataGenerator(for req: Request) -> [String: LeafDataGenerator]? {
+        var res: [String: LeafDataGenerator]? = [:]
+        
         let menus = req.cache["frontend.menus"] as? [String: LeafDataRepresentable] ?? [:]
-        return [
-            "menus": .lazy(LeafData.dictionary(menus))
+        res?["menus"] = .lazy(LeafData.dictionary(menus))
+
+        return res
+    }
+    
+
+    func cssHook(args: HookArguments) -> [[String: Any]] {
+        [
+            [
+                "name": "frontend",
+                "priority": 0,
+            ],
+            /*
+            [
+                "name": "custom",
+                "priority": 1000,
+                "snippet": """
+                    body { margin: 0; padding: 0; }
+                """,
+            ],
+            */
         ]
     }
 
@@ -110,13 +127,7 @@ final class FrontendModule: ViperModule {
         ]
     }
     
-    func leafFrontendCssHook(args: HookArguments) -> LeafDataRepresentable {
-        [
-            "name": "frontend",
-        ]
-    }
-    
-    func frontendPageHook(args: HookArguments) -> EventLoopFuture<Response?> {
+    func frontendRouteHook(args: HookArguments) -> EventLoopFuture<Response?> {
         let req = args["req"] as! Request
         
         return FrontendPageModel.queryJoinVisibleMetadata(path: req.url.path, on: req.db)

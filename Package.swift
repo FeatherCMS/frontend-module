@@ -1,7 +1,7 @@
 // swift-tools-version:5.3
 import PackageDescription
 
-let isLocalTestMode = false
+let isLocalTestMode = true
 
 var deps: [Package.Dependency] = [
     .package(url: "https://github.com/FeatherCMS/feather-core", from: "1.0.0-beta"),
@@ -26,6 +26,7 @@ if isLocalTestMode {
         .package(url: "https://github.com/binarybirds/liquid-local-driver", from: "1.2.0-beta"),
         /// core modules
         .package(url: "https://github.com/FeatherCMS/system-module", from: "1.0.0-beta"),
+        .package(url: "https://github.com/FeatherCMS/common-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/api-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/admin-module", from: "1.0.0-beta"),
         .package(url: "https://github.com/FeatherCMS/user-module", from: "1.0.0-beta"),
@@ -41,9 +42,11 @@ if isLocalTestMode {
             .product(name: "FeatherCore", package: "feather-core"),
             /// core modules
             .product(name: "SystemModule", package: "system-module"),
+            .product(name: "CommonModule", package: "common-module"),
             .product(name: "ApiModule", package: "api-module"),
             .product(name: "AdminModule", package: "admin-module"),
             .product(name: "UserModule", package: "user-module"),
+
             .product(name: "BlogModule", package: "blog-module"),
             .product(name: "SwiftyModule", package: "swifty-module"),
             .product(name: "MarkdownModule", package: "markdown-module"),

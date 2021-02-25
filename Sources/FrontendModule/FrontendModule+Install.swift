@@ -30,10 +30,6 @@ extension FrontendModule {
             return FrontendMenuItemModel(icon: icon, label: label, url: url, priority: priority, targetBlank: targetBlank, menuId: mainId)
         }
 
-        /// we add a home menu item as well with a relatively high priority
-        let homeMenuItem = FrontendMenuItemModel(label: "Home", url: "/", priority: 1000, menuId: mainId)
-        mainMenuItemModels.insert(homeMenuItem, at: 0)
-
         /// we add an about menu item
         let aboutMenuItem = FrontendMenuItemModel(label: "About", url: "/about/", priority: 0, menuId: mainId)
         mainMenuItemModels.insert(aboutMenuItem, at: 0)
@@ -123,26 +119,6 @@ extension FrontendModule {
                 "note": "Excerpt for the website",
             ],
             [
-                "key": "frontend.site.color.primary",
-                "name": "Site color - primary",
-                "note": "Primary color of the website",
-            ],
-            [
-                "key": "frontend.site.color.secondary",
-                "name": "Site color - secondary",
-                "note": "Secondary color of the website",
-            ],
-            [
-                "key": "frontend.site.font.family",
-                "name": "Site font family",
-                "note": "Custom font family for the site",
-            ],
-            [
-                "key": "frontend.site.font.size",
-                "name": "Site font size",
-                "note": "Custom font size for the site",
-            ],
-            [
                 "key": "frontend.site.filters",
                 "name": "Default content filters",
                 "note": "Coma separated list of default content filters",
@@ -158,21 +134,13 @@ extension FrontendModule {
                 "note": "Global JavaScript injection for the site",
             ],
             [
-                "key": "frontend.site.footer",
+                "key": "frontend.site.footer.top",
                 "name": "Site footer",
-                "value": "<img class=\"size\" src=\"/images/icons/icon.png\" alt=\"Logo of Feather\" title=\"Feather\">",
-                "note": "Custom contents for the footer",
-            ],
-            [
-                "key": "frontend.site.copy",
-                "name": "Site copy",
-                "value": "This site is powered by <a href=\"https://feathercms.com/\" target=\"_blank\">Feather CMS</a>",
-                "note": "Copyright text for the website",
-            ],
-            [
-                "key": "frontend.site.copy.prefix",
-                "name": "Site copy prefix",
-                "note": "Can be used to place a start year before the current one in the copy line",
+                "value": """
+                    <img class="size" src="/images/icons/icon.png" alt="Logo of Feather" title="Feather">
+                    <p>This site is powered by <a href="https://feathercms.com/" target="_blank">Feather CMS</a> &copy; 2020 - {year}</p>
+                """,
+                "note": "Top footer content placed above the footer menu",
             ],
             [
                 "key": "frontend.site.footer.bottom",

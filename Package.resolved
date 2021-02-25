@@ -2,12 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "admin-module",
+        "repositoryURL": "https://github.com/FeatherCMS/admin-module",
+        "state": {
+          "branch": null,
+          "revision": "1bdf60b78e4b09c1fe23c8281d9fe97cd3b9f3c7",
+          "version": "1.0.0-beta.10.6"
+        }
+      },
+      {
+        "package": "api-module",
+        "repositoryURL": "https://github.com/FeatherCMS/api-module",
+        "state": {
+          "branch": null,
+          "revision": "11805a20be1ee8776c6aead8fc8349fae7d5c85e",
+          "version": "1.0.0-beta.3"
+        }
+      },
+      {
         "package": "async-http-client",
         "repositoryURL": "https://github.com/swift-server/async-http-client.git",
         "state": {
           "branch": null,
-          "revision": "a72c5adce3986ff6b5092ae0464a8f2675087860",
-          "version": "1.2.3"
+          "revision": "ba845ee93d6ea10671e829ebf273b6f7a0c92ef0",
+          "version": "1.2.4"
         }
       },
       {
@@ -17,6 +35,24 @@
           "branch": null,
           "revision": "5760c79afb8ebc24fd3251fdd9724af225fdf1f9",
           "version": "1.3.0"
+        }
+      },
+      {
+        "package": "blog-module",
+        "repositoryURL": "https://github.com/FeatherCMS/blog-module",
+        "state": {
+          "branch": null,
+          "revision": "74038f817be05df356c0b892f7f51f5e6d293812",
+          "version": "1.0.0-beta.19"
+        }
+      },
+      {
+        "package": "common-module",
+        "repositoryURL": "https://github.com/FeatherCMS/common-module",
+        "state": {
+          "branch": null,
+          "revision": "ccb13bb2db6856150c2c198de795f1a405392f0e",
+          "version": "1.0.0-beta.1"
         }
       },
       {
@@ -51,8 +87,8 @@
         "repositoryURL": "https://github.com/vapor/fluent",
         "state": {
           "branch": null,
-          "revision": "855cd81cd129675dcb9adadeca2286281dbc0190",
-          "version": "4.1.0"
+          "revision": "4004e926cdef1fbb937501c8a60554349cced675",
+          "version": "4.2.0"
         }
       },
       {
@@ -62,6 +98,24 @@
           "branch": null,
           "revision": "7f1a5fe1effeee258ef0012def798e4bad43303d",
           "version": "1.10.3"
+        }
+      },
+      {
+        "package": "fluent-sqlite-driver",
+        "repositoryURL": "https://github.com/vapor/fluent-sqlite-driver",
+        "state": {
+          "branch": null,
+          "revision": "6f29f6f182c812075f09c7575c18ac5535c26824",
+          "version": "4.0.1"
+        }
+      },
+      {
+        "package": "Ink",
+        "repositoryURL": "https://github.com/JohnSundell/Ink",
+        "state": {
+          "branch": null,
+          "revision": "bd223a2482449507bd3286cb262c962d32d81e4b",
+          "version": "0.5.0"
         }
       },
       {
@@ -110,6 +164,24 @@
         }
       },
       {
+        "package": "liquid-local-driver",
+        "repositoryURL": "https://github.com/binarybirds/liquid-local-driver",
+        "state": {
+          "branch": null,
+          "revision": "83b74c43f6445e7feed666139ada23b28719b920",
+          "version": "1.2.0-beta.8"
+        }
+      },
+      {
+        "package": "markdown-module",
+        "repositoryURL": "https://github.com/FeatherCMS/markdown-module",
+        "state": {
+          "branch": null,
+          "revision": "c91584eb6e02be13601ce170c6c427366311ab72",
+          "version": "1.0.0-beta.4"
+        }
+      },
+      {
         "package": "multipart-kit",
         "repositoryURL": "https://github.com/vapor/multipart-kit.git",
         "state": {
@@ -128,6 +200,15 @@
         }
       },
       {
+        "package": "Splash",
+        "repositoryURL": "https://github.com/JohnSundell/Splash",
+        "state": {
+          "branch": null,
+          "revision": "81de0389558ad40579027735841593b21a511fa8",
+          "version": "0.15.0"
+        }
+      },
+      {
         "package": "sql-kit",
         "repositoryURL": "https://github.com/vapor/sql-kit.git",
         "state": {
@@ -137,12 +218,30 @@
         }
       },
       {
+        "package": "sqlite-kit",
+        "repositoryURL": "https://github.com/vapor/sqlite-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "2ec279b9c845cec254646834b66338551a024561",
+          "version": "4.0.2"
+        }
+      },
+      {
+        "package": "sqlite-nio",
+        "repositoryURL": "https://github.com/vapor/sqlite-nio.git",
+        "state": {
+          "branch": null,
+          "revision": "6481dd0b01112d082dd7eb362782126e81964138",
+          "version": "1.1.0"
+        }
+      },
+      {
         "package": "swift-backtrace",
         "repositoryURL": "https://github.com/swift-server/swift-backtrace.git",
         "state": {
           "branch": null,
-          "revision": "f2fd8c4845a123419c348e0bc4b3839c414077d5",
-          "version": "1.2.0"
+          "revision": "93b3d9a76454e05379a32a2f3b2a1f5a7794b414",
+          "version": "1.2.1"
         }
       },
       {
@@ -150,8 +249,8 @@
         "repositoryURL": "https://github.com/apple/swift-crypto.git",
         "state": {
           "branch": null,
-          "revision": "8f4bfa5bc1951440c15710e9e893721aa4b2765c",
-          "version": "1.1.3"
+          "revision": "296d3308b4b2fa355cfe0de4ca411bf7a1cd8cf8",
+          "version": "1.1.4"
         }
       },
       {
@@ -186,8 +285,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-extras.git",
         "state": {
           "branch": null,
-          "revision": "e5b5d191a80667a14827bfeb0ae4a511f7677942",
-          "version": "1.7.0"
+          "revision": "de1c80ad1fdff1ba772bcef6b392c3ef735f39a6",
+          "version": "1.8.0"
         }
       },
       {
@@ -195,8 +294,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-http2.git",
         "state": {
           "branch": null,
-          "revision": "d4060ac4d056a48d946298f04968f6f6080cc618",
-          "version": "1.16.2"
+          "revision": "f4736a3b78a2bbe3feb7fc0f33f6683a8c27974c",
+          "version": "1.16.3"
         }
       },
       {
@@ -204,8 +303,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-ssl.git",
         "state": {
           "branch": null,
-          "revision": "62bf5083df970e67c886210fa5b857eacf044b7c",
-          "version": "2.10.2"
+          "revision": "bbb38fbcbbe9dc4665b2c638dfa5681b01079bfb",
+          "version": "2.10.4"
         }
       },
       {
@@ -213,8 +312,35 @@
         "repositoryURL": "https://github.com/apple/swift-nio-transport-services.git",
         "state": {
           "branch": null,
-          "revision": "5a352330c09a323e59ebd99afdf4ca3964c217bc",
-          "version": "1.9.1"
+          "revision": "1d28d48e071727f4558a8a4bb1894472abc47a58",
+          "version": "1.9.2"
+        }
+      },
+      {
+        "package": "swifty-module",
+        "repositoryURL": "https://github.com/FeatherCMS/swifty-module",
+        "state": {
+          "branch": null,
+          "revision": "10c13259d69c453265b431b67914a9043f663a2f",
+          "version": "1.0.0-beta.4"
+        }
+      },
+      {
+        "package": "system-module",
+        "repositoryURL": "https://github.com/FeatherCMS/system-module",
+        "state": {
+          "branch": null,
+          "revision": "713701c6d5bbcf135765bc8ab94668dc592b0eab",
+          "version": "1.0.0-beta.12"
+        }
+      },
+      {
+        "package": "user-module",
+        "repositoryURL": "https://github.com/FeatherCMS/user-module",
+        "state": {
+          "branch": null,
+          "revision": "fea3ea4276d7c94a2a4465d211a9475747d32a28",
+          "version": "1.0.0-beta.7"
         }
       },
       {
@@ -222,8 +348,8 @@
         "repositoryURL": "https://github.com/vapor/vapor",
         "state": {
           "branch": null,
-          "revision": "bb87dcff4cf6d86d386308b4cb1393cefa4891a4",
-          "version": "4.39.2"
+          "revision": "8c68cc17b7f4a95010c47d06707cfb1734e4629b",
+          "version": "4.41.0"
         }
       },
       {
