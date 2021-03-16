@@ -20,10 +20,10 @@ struct FrontendSiteAdminController {
         let formId = UUID().uuidString
         let nonce = req.generateNonce(for: "site-settings-form", id: formId)
  
-        return req.leaf.render(template: "Frontend/Admin/Settings", context: [
+        return req.tau.render(template: "Frontend/Admin/Settings", context: [
             "formId": .string(formId),
             "formToken": .string(nonce),
-            "fields": form.fieldsLeafData,
+            "fields": form.fieldsTemplateData,
             "notification": .string(form.notification)
         ])
     }

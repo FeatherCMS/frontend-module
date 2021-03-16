@@ -52,11 +52,11 @@ final class FrontendModule: ViperModule {
 
     }
 
-    func leafDataGenerator(for req: Request) -> [String: LeafDataGenerator]? {
-        var res: [String: LeafDataGenerator]? = [:]
+    func templateDataGenerator(for req: Request) -> [String: TemplateDataGenerator]? {
+        var res: [String: TemplateDataGenerator]? = [:]
         
-        let menus = req.cache["frontend.menus"] as? [String: LeafDataRepresentable] ?? [:]
-        res?["menus"] = .lazy(LeafData.dictionary(menus))
+        let menus = req.cache["frontend.menus"] as? [String: TemplateDataRepresentable] ?? [:]
+        res?["menus"] = .lazy(TemplateData.dictionary(menus))
 
         return res
     }
@@ -85,9 +85,9 @@ final class FrontendModule: ViperModule {
     func prepareRequestCacheHook(args: HookArguments) -> EventLoopFuture<[String: Any?]> {
         let req = args["req"] as! Request
         return FrontendMenuModel.query(on: req.db).with(\.$items).all().map { menus in
-            var items: [String: LeafDataRepresentable] = [:]
+            var items: [String: TemplateDataRepresentable] = [:]
             for menu in menus {
-                items[menu.key] = menu.leafData
+                items[menu.key] = menu.templateData
             }
             return items
         }
@@ -98,12 +98,12 @@ final class FrontendModule: ViperModule {
     
     // MARK: - hooks
 
-    func leafAdminMenuHook(args: HookArguments) -> LeafDataRepresentable {
+    func leafAdminMenuHook(args: HookArguments) -> TemplateDataRepresentable {
         [
             "name": "Frontend",
             "icon": "layout",
             "permission": "frontend.module.access",
-            "items": LeafData.array([
+            "items": TemplateData.array([
                 [
                     "label": "Pages",
                     "url": "/admin/frontend/pages/",
@@ -146,9 +146,9 @@ final class FrontendModule: ViperModule {
                     }
                 }
                 /// render the page with the filtered content
-                var ctx = page.leafDataWithJoinedMetadata.dictionary!
+                var ctx = page.templateDataWithJoinedMetadata.dictionary!
                 ctx["content"] = .string(page.filter(content, req: req))
-                return req.leaf.render(template: "Frontend/Page", context: .init(ctx)).encodeOptionalResponse(for: req)
+                return req.tau.render(template: "Frontend/Page", context: .init(ctx)).encodeOptionalResponse(for: req)
             }
     }
     
@@ -157,8 +157,8 @@ final class FrontendModule: ViperModule {
         let req = args["req"] as! Request
         let metadata = args["page-metadata"] as! Metadata
 
-        return req.leaf.render(template: "Frontend/Home", context: [
-            "metadata": metadata.leafData,
+        return req.tau.render(template: "Frontend/Home", context: [
+            "metadata": metadata.templateData,
         ])
         .encodeOptionalResponse(for: req)
     }

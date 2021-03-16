@@ -7,9 +7,9 @@
 
 import FeatherCore
 
-extension FrontendMenuModel: LeafDataRepresentable {
+extension FrontendMenuModel: TemplateDataRepresentable {
 
-    var leafData: LeafData {
+    var templateData: TemplateData {
         .dictionary([
             "id": id,
             "key": key,

@@ -14,10 +14,10 @@ extension Metadata.Status: FormFieldOptionRepresentable {
     }
 }
 
-extension FrontendMetadataModel: LeafDataRepresentable {
+extension FrontendMetadataModel: TemplateDataRepresentable {
 
-    /// returns the LeafData types for a metadata
-    var leafData: LeafData {
+    /// returns the TemplateData types for a metadata
+    var templateData: TemplateData {
         .dictionary([
             "id": .string(id?.uuidString),
             "module": .string(module),

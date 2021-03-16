@@ -21,12 +21,12 @@ final class FrontendPageEditForm: ModelForm {
         [title, content]
     }
 
-    var leafData: LeafData {
+    var templateData: TemplateData {
         .dictionary([
-            "modelId": modelId?.encodeToLeafData() ?? .string(nil),
-            "fields": fieldsLeafData,
+            "modelId": modelId?.encodeToTemplateData() ?? .string(nil),
+            "fields": fieldsTemplateData,
             "notification": .string(notification),
-            "metadata": metadata?.leafData ?? .dictionary(nil)
+            "metadata": metadata?.templateData ?? .dictionary(nil)
         ])
     }
 

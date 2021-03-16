@@ -27,8 +27,8 @@ struct FrontendController {
             qb = filter(qb)
         }
         return qb.all()
-        .mapEach(\.leafData)
-        .flatMap { req.leaf.render(template: template, context: ["list": .array($0)]) }
+        .mapEach(\.templateData)
+        .flatMap { req.tau.render(template: template, context: ["list": .array($0)]) }
         .encodeResponse(status: .ok, headers: ["Content-Type": "text/xml; charset=utf-8"], for: req)
     }
 
@@ -41,7 +41,7 @@ struct FrontendController {
     }
 
     func robots(_ req: Request) throws -> EventLoopFuture<Response> {
-        req.leaf.render(template: "Frontend/Robots")
+        req.tau.render(template: "Frontend/Robots")
             .encodeResponse(status: .ok, headers: ["Content-Type": "text/plain; charset=utf-8"], for: req)
     }
 }
