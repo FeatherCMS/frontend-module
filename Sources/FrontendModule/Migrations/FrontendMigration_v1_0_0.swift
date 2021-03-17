@@ -18,7 +18,7 @@ struct FrontendMigration_v1_0_0: Migration {
                 .field(FrontendMetadataModel.FieldKeys.reference, .uuid, .required)
                 
                 .field(FrontendMetadataModel.FieldKeys.title, .string)
-                .field(FrontendMetadataModel.FieldKeys.excerpt, .data)
+                .field(FrontendMetadataModel.FieldKeys.excerpt, .string)
                 .field(FrontendMetadataModel.FieldKeys.imageKey, .string)
                 .field(FrontendMetadataModel.FieldKeys.date, .date, .required)
                 
@@ -28,8 +28,8 @@ struct FrontendMigration_v1_0_0: Migration {
                 .field(FrontendMetadataModel.FieldKeys.canonicalUrl, .string)
                 
                 .field(FrontendMetadataModel.FieldKeys.filters, .array(of: .string), .required)
-                .field(FrontendMetadataModel.FieldKeys.css, .data)
-                .field(FrontendMetadataModel.FieldKeys.js, .data)
+                .field(FrontendMetadataModel.FieldKeys.css, .string)
+                .field(FrontendMetadataModel.FieldKeys.js, .string)
 
                 .unique(on: FrontendMetadataModel.FieldKeys.slug)
                 .unique(on: FrontendMetadataModel.FieldKeys.module, FrontendMetadataModel.FieldKeys.model, FrontendMetadataModel.FieldKeys.reference)
@@ -37,7 +37,7 @@ struct FrontendMigration_v1_0_0: Migration {
             db.schema(FrontendPageModel.schema)
                 .id()
                 .field(FrontendPageModel.FieldKeys.title, .string, .required)
-                .field(FrontendPageModel.FieldKeys.content, .data)
+                .field(FrontendPageModel.FieldKeys.content, .string)
                 .create(),
             db.schema(FrontendMenuModel.schema)
                 .id()
