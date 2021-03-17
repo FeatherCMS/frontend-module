@@ -213,8 +213,8 @@
         "repositoryURL": "https://github.com/binarybirds/tau-kit",
         "state": {
           "branch": null,
-          "revision": "907a31cb6e2937db0a7aba6f5d90a634d30f26cd",
-          "version": "1.0.0"
+          "revision": "71e14868c88d16e32fc355a894398f7f877e58ee",
+          "version": "1.1.0"
         }
       },
       {
@@ -240,8 +240,8 @@
         "repositoryURL": "https://github.com/binarybirds/viper-kit",
         "state": {
           "branch": null,
-          "revision": "ae82618b8fc668838bcbaedba516d368e8318d06",
-          "version": "1.5.0-rc.1"
+          "revision": "bac0f07af9bc1731a24ff6da573c838ed1f47afb",
+          "version": "1.5.0-rc.1.1"
         }
       },
       {

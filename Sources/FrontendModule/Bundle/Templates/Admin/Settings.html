@@ -2,15 +2,15 @@
 Site settings
 #enddefine
 #define(body):
-<div class="container">
-    <header class="margin-bottom">
-        <h1 class="margin-top-zero">Site settings</h1>
-        <p class="margin-top-zero">
-            <a href="/" target="_blank">View site</a>
-        </p>
-    </header>
+<div class="lead container">
+    <div class="segment">
+        <a href="/" target="_blank">View site</a>
+    </div>
 
-    <section>
+    <h1>Site settings</h1>
+</div>
+<div class="container">
+    
     <form id="site-settings-form" method="post" action="#($req.url.path)" enctype="multipart/form-data">
         #var(field = nil)
 
@@ -83,14 +83,12 @@ Site settings
         #(field = ["label": "Save"])
         #inline("Common/Fields/Button")
     </form>
-    </section>
 
     #if(notification != nil):
     <section id="notification">
         <span>#(notification)</span>
     </section>
     #endif
-
 </div>
 #enddefine
 #inline("Admin/Index")

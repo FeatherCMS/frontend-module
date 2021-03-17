@@ -3,13 +3,11 @@
     "excerpt": $system.variables["frontend.page.not.found.excerpt"]
 ])
 #define(body):
-<div class="container text-align-center">
-    <div class="margin-xl">
-        <span class="h1">#($system.variables["frontend.page.not.found.icon"])</span>
-        <h1 class="margin-top-zero">#($system.variables["frontend.page.not.found.title"])</h1>
-        <p class="margin-bottom">#($system.variables["frontend.page.not.found.excerpt"])</p>
-        <a href="/">#($system.variables["frontend.page.not.found.link"])</a>
-    </div>
+<div class="lead container center">
+    <span class="icon">#($system.variables["frontend.page.not.found.icon"])</span>
+    <h1>#($system.variables["frontend.page.not.found.title"])</h1>
+    <p>#($system.variables["frontend.page.not.found.excerpt"])</p>
+    <a href="/">#($system.variables["frontend.page.not.found.link"])</a>
 </div>
 #enddefine
 #inline("Frontend/Index")

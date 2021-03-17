@@ -46,7 +46,7 @@ try feather.configure([
 /// reset resources folder if we're in debug mode
 if feather.app.isDebug {
 //    try feather.resetPublicFiles()
-//    try feather.copyTemplatesIfNeeded()
+    try feather.copyTemplatesIfNeeded()
 }
 
 if let hostname = Environment.get("SERVER_HOSTNAME") {

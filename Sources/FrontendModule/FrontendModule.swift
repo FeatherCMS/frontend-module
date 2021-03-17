@@ -34,8 +34,8 @@ final class FrontendModule: ViperModule {
         app.hooks.register("routes", use: (router as! FrontendRouter).routesHook)
         app.hooks.register("admin-routes", use: (router as! FrontendRouter).adminRoutesHook)
         app.hooks.register("frontend-route", use: frontendRouteHook)
-        /// leaf
-        app.hooks.register("leaf-admin-menu", use: leafAdminMenuHook)
+        /// template
+        app.hooks.register("template-admin-menu", use: templateAdminMenuHook)
         /// cache
         app.hooks.register("prepare-request-cache", use: prepareRequestCacheHook)
         /// page
@@ -98,7 +98,7 @@ final class FrontendModule: ViperModule {
     
     // MARK: - hooks
 
-    func leafAdminMenuHook(args: HookArguments) -> TemplateDataRepresentable {
+    func templateAdminMenuHook(args: HookArguments) -> TemplateDataRepresentable {
         [
             "name": "Frontend",
             "icon": "layout",
