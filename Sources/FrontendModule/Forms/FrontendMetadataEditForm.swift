@@ -76,7 +76,7 @@ final class FrontendMetadataModelEditForm: ModelForm {
         output.status = Metadata.Status(rawValue: statusId.value!)!
         output.feedItem = feedItem.value ?? false
         output.filters = filters.values
-        output.date = Application.Config.dateFormatter().date(from: date.value!)!
+        output.date = Application.Config.dateFormatter().date(from: date.value!) ?? Date()
         output.title = title.value?.emptyToNil
         output.excerpt = excerpt.value?.emptyToNil
         output.canonicalUrl = canonicalUrl.value?.emptyToNil
